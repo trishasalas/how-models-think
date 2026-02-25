@@ -27,18 +27,26 @@ FIGURES_DIR = Path("paper/figures")
 RESULTS_DIR = Path("results")
 FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
-# ── Palette (matches existing figures) ────────────────────────────────────────
-CORRECT_COLOR   = "#2a7f8a"   # teal
-PARTIAL_COLOR   = "#c8956c"   # amber
-INCORRECT_COLOR = "#d9d9d9"   # light gray
-HIGHLIGHT_COLOR = "#1a5c66"   # dark teal for L1H12 callout
+# ── Palette ────────────────────────────────────────────────────────────────────
+# Chart colors — cool blues from Blues colormap (L1H12-induction-test.png)
+NAVY       = "#08306b"   # dark navy — primary
+BLUE       = "#2171b5"   # medium blue — secondary
+LIGHT_BLUE = "#6baed6"   # light blue — tertiary
+
+# Heatmap outcome colors — semantically meaningful, WCAG AA contrast verified
+CORRECT_COLOR        = "#5ba300"   # bright green,  black text ~6.7:1
+PARTIAL_COLOR        = "#054fb9"   # dark blue,     white text ~7.4:1
+INCORRECT_COLOR      = "#ffffff"   # white,         black text
+INCORRECT_TEXT_COLOR = "#000000"   # black — text on incorrect cells
+
+HIGHLIGHT_COLOR = "#08306b"   # navy — L1H12 callout
 
 plt.rcParams.update({
-    "font.family": "sans-serif",
+    "font.family":      "Atkinson Hyperlegible",
     "axes.spines.top":   False,
     "axes.spines.right": False,
-    "figure.facecolor":  "#f8f8f8",
-    "axes.facecolor":    "#f8f8f8",
+    "figure.facecolor":  "white",
+    "axes.facecolor":    "white",
 })
 
 # ── Outcome encoding ───────────────────────────────────────────────────────────
@@ -48,7 +56,7 @@ INCORRECT = 0
 
 OUTCOME_LABELS      = {CORRECT: "Correct",   PARTIAL: "Partial",  INCORRECT: "Incorrect"}
 OUTCOME_COLORS      = {CORRECT: CORRECT_COLOR, PARTIAL: PARTIAL_COLOR, INCORRECT: INCORRECT_COLOR}
-OUTCOME_TEXT_COLORS = {CORRECT: "white",      PARTIAL: "white",    INCORRECT: "#666666"}
+OUTCOME_TEXT_COLORS = {CORRECT: "#000000",    PARTIAL: "white",    INCORRECT: "#000000"}
 
 MODELS = ["160M", "410M", "1B", "2.8B", "6.9B"]
 
@@ -106,9 +114,9 @@ def make_outcome_heatmap(data, title, subtitle, caption, fig_path):
 
     # Cell borders
     for r in range(n_rows + 1):
-        ax.axhline(r, color="white", linewidth=1.5)
+        ax.axhline(r, color="#cccccc", linewidth=1.0)
     for c in range(n_cols + 1):
-        ax.axvline(c, color="white", linewidth=1.5)
+        ax.axvline(c, color="#cccccc", linewidth=1.0)
 
     # Emergence threshold marker at 2.8B (column index 3)
     ax.axvline(3, color="#555555", linewidth=1.8, linestyle="--", alpha=0.55)
@@ -184,11 +192,11 @@ def make_l1h12_figure():
             if highlight_h12 and h == 12:
                 colors.append(HIGHLIGHT_COLOR)
             elif v >= 0.5:
-                colors.append(CORRECT_COLOR)
+                colors.append(NAVY)
             elif v >= 0.1:
-                colors.append("#7ab8bf")   # lighter teal: moderate binding
+                colors.append(LIGHT_BLUE)   # moderate binding
             else:
-                colors.append("#d0d0d0")   # below threshold
+                colors.append("#d0d0d0")    # below threshold
         return colors
 
     # Left panel — screen reader
@@ -279,9 +287,9 @@ def make_perplexity_figure():
     ax.text(1.5, 88, "flip\nzone", ha="center", va="top",
             fontsize=9, color="#888888", style="italic", linespacing=1.4)
 
-    ax.plot(x, correct, color=CORRECT_COLOR,  marker="o", linewidth=2,
+    ax.plot(x, correct, color=NAVY,       marker="o", linewidth=2,
             markersize=7, label="Correct definition", zorder=3)
-    ax.plot(x, wrong,   color=PARTIAL_COLOR,  marker="s", linewidth=2,
+    ax.plot(x, wrong,   color=LIGHT_BLUE, marker="s", linewidth=2,
             markersize=7, label="Wrong definition",   zorder=3)
 
     # Annotation arrow pointing to crossover
@@ -335,9 +343,6 @@ def make_compound_figure():
     totals  = [sr_total,  at_total,  sl_total ]
     strongs = [sr_strong, at_strong, sl_strong]
 
-    LIGHT_TEAL = "#7ab8bf"
-    DARK_TEAL  = CORRECT_COLOR
-
     x      = np.arange(len(compounds))
     width  = 0.38
 
@@ -345,8 +350,8 @@ def make_compound_figure():
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
 
-    bars_all    = ax.bar(x - width / 2, totals,  width, color=LIGHT_TEAL, label="All heads >0.1",    zorder=2)
-    bars_strong = ax.bar(x + width / 2, strongs, width, color=DARK_TEAL,  label="Strong heads >=0.5", zorder=2)
+    bars_all    = ax.bar(x - width / 2, totals,  width, color=LIGHT_BLUE, label="All heads >0.1",     zorder=2)
+    bars_strong = ax.bar(x + width / 2, strongs, width, color=NAVY,       label="Strong heads >=0.5", zorder=2)
 
     for bar, val in zip(bars_all,    totals ):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 3,
@@ -389,7 +394,7 @@ def make_control_figure():
         "cold water\n(control -- adjacent tokens)",
     ]
     values = [sr_count, 0]
-    colors = [CORRECT_COLOR, "#d0d0d0"]
+    colors = [NAVY, "#d0d0d0"]
 
     fig, ax = plt.subplots(figsize=(6.5, 5))
     fig.patch.set_facecolor("white")
