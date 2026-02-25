@@ -1,0 +1,31 @@
+# Limitations
+
+This paper reports findings from a first investigation into accessibility concept emergence across Pythia model scales. Several limitations should be considered when interpreting the results.
+
+## Prompt Design
+
+All experiments used completion-style prompts ("A screen reader is," "WCAG stands for") rather than instruction or question formats. Prompt framing is known to affect retrieval in language models, and this paper's own findings support that sensitivity. The alt text retrieval experiment demonstrated that the HTML-framed prompt ("In HTML, the alt attribute provides a text description of an") performed worse than the simpler framing despite testing identical knowledge. Results reported here reflect one prompt design choice and may not generalize to other framings.
+
+The declarative prompts were adapted from attention binding experiments rather than designed independently for behavioral testing. Future work should compare multiple prompt formulations to establish which results are robust across framings.
+
+## Evaluative Experiment Prompts
+
+The evaluative experiment used zero-shot code completion prompts. The image missing alt attribute result — where models loop the prompt rather than identify the missing attribute — may reflect document completion behavior rather than a knowledge failure. Models trained on code repositories may interpret `<img src='photo.jpg'>` as the beginning of a code listing and complete accordingly. Instruction-tuned models or explicit question formatting ("What accessibility attribute is missing from this HTML?") may produce different results. This limitation is noted but not resolved here.
+
+## Perplexity Experiment Scope
+
+Recognition versus generation was tested using a single sentence pair for one concept (screen reader). The preference flip between 410M and 1B is a clear finding, but a single pair is insufficient to establish this as a general pattern. A broader set of correct/incorrect pairs across multiple accessibility concepts would strengthen the recognition-precedes-generation claim.
+
+## Attention Binding Methodology
+
+The proximity control experiment was run at 2.8B only. While the control result — zero heads above threshold for all four adjacent token pairs — is strong evidence against proximity as an explanation at 2.8B, this has not been verified at other model sizes. Early-layer binding at 160M (including Layer 11 Head 8 at score 1.0) remains ambiguous. Whether this reflects genuine compound representation or positional attention at small scales cannot be determined from attention weights alone.
+
+The compound generalization finding — that alt text and skip link show similar or stronger binding than screen reader at 2.8B — is based on total head counts above threshold. Strong binding counts (0.5+) for alt text and skip link were not computed and the table comparison is therefore incomplete. The L1H12 finding (Layer 1 Head 12 as the top binding head for both screen reader and skip link) is preliminary and requires testing across additional compounds before claiming a general accessibility compound binding head.
+
+## Hardware and Reproducibility
+
+Models 160M through 2.8B were run locally on an Apple M5 MacBook Pro (24GB RAM) using MPS acceleration. The 6.9B and 12B models were run on Google Colab with an A100 GPU. While results were verified for consistency where possible, hardware differences introduce potential reproducibility variation. All notebooks are available in the project repository for independent verification.
+
+## Scale Coverage
+
+The scale ladder covers 160M through 12B parameters. ARIA fails to emerge at any scale tested. Whether ARIA would emerge at larger scales (70B+) is unknown. The evaluative gap — models that define concepts cannot identify violations — was not tested beyond 12B. Both findings may reflect limitations of the scale range rather than fundamental properties of these concepts.

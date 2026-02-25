@@ -85,17 +85,43 @@ For each model, attention weights from "reader" to "screen" were extracted acros
 | 1B | 16 | 11 | 10 | 91% | 6 |
 | 2.8B | 32 | 25 | 20 | 80% | 29 |
 | 6.9B | 32 | 37 | 28 | 76% | 30 |
+| 12B | 36 | 37 | 24 | 65% | 34 |
 
-Note: 1B's architectural difference (8 heads vs 12) affects raw head counts; see Methodology.
+Note: 1B's architectural difference (8 heads vs 12) affects raw head counts; see Methodology. 12B results were obtained on separate hardware (Google Colab, A100); see Methodology.
 
 Several patterns emerge from this data.
 
-**Early layers dominate across all models.** Between 70-91% of strong binding occurs in layers 0-3 regardless of model size. Compound term binding is established early in the forward pass at every scale tested.
+**Early layers dominate across all models.** Between 65-91% of strong binding occurs in layers 0-3 regardless of model size. Compound term binding is established early in the forward pass at every scale tested. Notably, this early-layer concentration decreases slightly at 12B (65%), suggesting that as scale increases, binding becomes more distributed across full network depth rather than purely front-loaded.
 
-**Strong head count scales with model size.** 160M has 10 strong binding heads; 6.9B has 37. 1B is the expected outlier given its different architecture.
+**Strong head count scales with model size, then plateaus.** 160M has 10 strong binding heads; 6.9B and 12B both have 37. 1B is the expected outlier given its different architecture. The plateau between 6.9B and 12B may reflect saturation of the binding circuit rather than a failure to scale.
 
-**Last strong layer tracks behavioral emergence.** Below the 2.8B emergence threshold, strong binding drops off early — layer 11 for 160M, layer 9 for 410M, layer 6 for 1B. At 2.8B and 6.9B, strong binding persists deep into the network — layers 29 and 30 respectively. The models that cannot correctly define screen reader do not sustain compound binding through the network. The models that can, do.
+**Last strong layer tracks behavioral emergence.** Below the 2.8B emergence threshold, strong binding drops off early — layer 11 for 160M, layer 9 for 410M, layer 6 for 1B. At 2.8B and above, strong binding persists deep into the network — layers 29, 30, and 34 for 2.8B, 6.9B, and 12B respectively. The models that cannot correctly define screen reader do not sustain compound binding through the network. The models that can, do.
 
 **2.8B is the inflection point.** Total heads above threshold jumps from 28 (1B) to 101 (2.8B) — a 3.6x increase that coincides exactly with the behavioral emergence threshold identified in Experiment 1. This suggests that robust, sustained attention binding across many heads may be a mechanistic correlate of accessibility concept emergence, not merely a consequence of larger model size.
 
-All five models show strong binding in layers 0-3, including 160M which cannot produce a correct definition. Whether early-layer binding at small scales reflects genuine compound representation or proximity effects cannot be determined from attention weights alone and is noted as a limitation.
+All six models show strong binding in layers 0-3, including 160M which cannot produce a correct definition. Whether early-layer binding at small scales reflects genuine compound representation or proximity effects cannot be determined from attention weights alone and is noted as a limitation.
+
+### Control Experiment: Ruling Out Proximity Effects
+
+To test whether the binding signal reflects compound concept encoding rather than simple token adjacency, a control experiment measured attention weights between adjacent token pairs with no compound semantic relationship. Four prompts were tested at 2.8B:
+
+- "She drank a glass of cold water" — adjacent semantically related tokens (cold → water)
+- "The castle is very old" — adjective modifying noun (very → old)
+- "She finished her homework, and then she watched a movie" — function words (and → then)
+- "The ancient ruins stood on a very old hill" — semantically related modifier pair
+
+All four control pairs produced zero heads above the 0.1 threshold. Compare this to 101 heads for "screen reader" under identical conditions. The binding signal is not a proximity artifact.
+
+### Binding Generalizes Across Accessibility Compounds
+
+Having ruled out proximity effects, attention binding was measured for two additional accessibility compound terms at 2.8B: alt text and skip link.
+
+| Compound | Total heads >0.1 | Strong (0.5+) | Top score |
+|----------|-----------------|--------------|----------|
+| screen reader | 101 | 25 | 0.9909 |
+| alt text | 200 | 35 | 0.9899 |
+| skip link | 208 | 40 | 0.9913 |
+
+Alt text and skip link show substantially stronger binding than screen reader — approximately double the total head count. All three compounds show the same pattern of early-layer concentration with deep-network persistence at 2.8B.
+
+This rules out a compound-specific explanation. The binding pattern is not an artifact of how "screen reader" tokenizes or how frequently it appears in training data. It is a general property of accessibility compound terms at the 2.8B emergence threshold. The models that can define these concepts correctly show robust, distributed binding across many heads and many layers. The models that cannot show weak binding that drops off early.

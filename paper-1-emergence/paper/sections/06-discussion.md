@@ -30,6 +30,8 @@ The sustained attention binding pattern at 2.8B and 6.9B — strong binding pers
 
 This finding is correlational, not causal. Whether sustained binding causes correct generation, or both are consequences of a third factor such as MLP encoding depth, cannot be determined from attention weights alone. The presence of strong early-layer binding in 160M — including one head at perfect score 1.0 — despite behavioral failure suggests early binding is necessary but not sufficient for emergence. Whether this reflects genuine compound representation or proximity effects in the absence of higher-level context remains an open question for future probing work.
 
+Canonical induction head testing confirmed that L1H12 does not exhibit prefix-matching behavior, suggesting it implements a distinct binding mechanism rather than general-purpose token repetition detection. What mechanism L1H12 implements, and whether it is routing to MLP-encoded compound representations, is a question for future causal analysis.
+
 ## Relationship to Prior Work
 
 Wei et al. (2022) established emergence as a general phenomenon. This paper treats accessibility concept acquisition as a domain-specific case study with properties that make it a productive probe: concepts are rare enough to show scale sensitivity, evaluable against clear ground truth, and directly relevant to real-world applications. The results confirm that emergence operates in specialized domains but with domain-specific timing — accessibility acronyms require substantially more scale than conceptual terms, and evaluative capability does not emerge within the range tested.

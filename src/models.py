@@ -3,16 +3,17 @@
 Handles GPT-2 and Pythia model families with automatic device detection
 and memory cleanup between model swaps on memory-constrained hardware.
 """
+import warnings
+# Suppress all warnings
+warnings.filterwarnings('ignore')
+
+# Or specifically for TransformerLens/HuggingFace warnings:
+warnings.filterwarnings('ignore', category=UserWarning, module='transformer_lens')
 
 import gc
 from dataclasses import dataclass
 from typing import Optional
-import warnings
-warnings.filterwarnings("ignore")
-import logging
-logging.getLogger("transformer_lens").setLevel(logging.ERROR)
-logging.getLogger("transformers").setLevel(logging.ERROR)
-logging.getLogger("huggingface_hub").setLevel(logging.ERROR)
+
 
 import torch
 from transformer_lens import HookedTransformer
