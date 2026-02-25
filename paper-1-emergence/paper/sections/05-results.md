@@ -119,7 +119,7 @@ Having ruled out proximity effects, attention binding was measured for two addit
 | Compound | Total heads >0.1 | Strong (0.5+) | Top score |
 |----------|-----------------|--------------|----------|
 | screen reader | 101 | 25 | 0.9909 |
-| alt text | 200 | 35 | 0.9899 |
+| alt text | 200 | 40 | 0.9899 |
 | skip link | 208 | 40 | 0.9913 |
 
 Alt text and skip link show substantially stronger binding than screen reader — approximately double the total head count. All three compounds show the same pattern of early-layer concentration with deep-network persistence at 2.8B.
