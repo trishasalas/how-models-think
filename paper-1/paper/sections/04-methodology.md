@@ -61,4 +61,4 @@ Binding strength between "reader" and "screen" was measured as the attention wei
 
 ### Reproducibility
 
-All experiments were run with temperature=0 for deterministic outputs. Models 160M through 2.8B were run locally on an Apple M5 MacBook Pro (24GB RAM). Pythia 6.9B was run on Google Colab with an A100 GPU. Full notebooks are available at https://github.com/trishasalas/mech-interp-research/blob/main/pythia/pythia-a11y-emergence.ipynb.
+All experiments were run with temperature=0 for deterministic outputs on Google Colab with an A100 GPU. Full notebooks are available at https://github.com/trishasalas/mech-interp-research/blob/main/pythia/pythia-a11y-emergence.ipynb.
