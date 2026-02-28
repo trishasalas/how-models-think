@@ -1,6 +1,7 @@
-| title                                                     | author       | date |
-| --------------------------------------------------------- | ------------ | ---- |
-| Testing Accessibility Knowledge Across Pythia Model Sizes | Trisha Salas | 2026 |
+---
+title : Testing Accessibility Knowledge Across Pythia Model Sizes
+author : Trisha Salas
+---
 
 ## Abstract
 

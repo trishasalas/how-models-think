@@ -1,4 +1,4 @@
-# Conclusion
+## Conclusion
 
 This paper mapped accessibility concept acquisition across five Pythia model sizes using behavioral, perplexity-based, and mechanistic analysis. The findings establish a clear picture of how and when accessibility knowledge emerges in language models trained on web-scale data.
 

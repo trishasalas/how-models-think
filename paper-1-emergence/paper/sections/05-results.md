@@ -1,21 +1,23 @@
-# Results
+## Results
 
-## Experiment 1: Declarative Knowledge
+### Experiment 1: Declarative Knowledge
 
 Models were tested on ten accessibility concept prompts across all five Pythia sizes. Results show a sharp threshold pattern for core accessibility terms, with acronyms behaving differently.
 
-| Prompt | 160M | 410M | 1B | 2.8B | 6.9B |
-|--------|------|------|----|------|------|
-| A screen reader is | ❌ "view a screen" | ❌ "view a screen" | ⚠️ "reads text from screen" | ✅ "reads aloud the text" | ⚠️ "reads text on screen" |
-| WCAG stands for | ❌ hallucinated | ❌ hallucinated | ❌ hallucinated | ❌ hallucinated | ✅ correct |
-| A skip link is | ❌ nonsense | ⚠️ "not part of main page" | ❌ network term | ✅ "skip a section" | ❌ "not displayed in browser" |
-| The purpose of alt text is | ❌ vague | ❌ "customize" | ❌ "add text" | ✅ "brief description" | ✅ "description of image" |
-| ARIA stands for | ❌ gibberish | ❌ loops | ❌ wrong expansion | ❌ wrong expansion | ❌ wrong expansion |
-| A focus indicator is | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Keyboard navigation allows | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Color contrast is important because | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Semantic HTML helps | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Captions are used for | ❌ | ⚠️ | ❌ | ⚠️ | ❌ |
+*Correct = matches known definition; Partial = incomplete or imprecise; Incorrect = wrong, off-topic, or loops*
+
+| Prompt                              | 160M | 410M | 1B  | 2.8B | 6.9B | 12B |
+| ----------------------------------- | ---- | ---- | --- | ---- | ---- | --- |
+| A screen reader is                  | $\times$    | $\times$    | $\approx$   | $\checkmark$    | $\approx$    | tbd |
+| WCAG stands for                     | $\times$    | $\times$    | $\times$    | $\times$    | $\checkmark$    | tbd |
+| A skip link is                      | $\times$    | $\approx$    | $\times$    | $\checkmark$    | $\times$    | tbd |
+| The purpose of alt text is          | $\times$    | $\times$    | $\times$    | $\checkmark$    | $\checkmark$    | tbd |
+| ARIA stands for                     | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    | tbd |
+| A focus indicator is                | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    | tbd |
+| Keyboard navigation allows          | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    | tbd |
+| Color contrast is important because | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    | tbd |
+| Semantic HTML helps                 | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    | tbd |
+| Captions are used for               | $\times$    | $\approx$    | $\times$    | $\approx$    | $\times$    | tbd |
 
 Several patterns emerge from this data.
 
@@ -29,17 +31,19 @@ Several patterns emerge from this data.
 
 ---
 
-## Experiment 2: Evaluative Knowledge
+### Experiment 2: Evaluative Knowledge
 
 Models were tested on five code prompts requiring identification of accessibility violations. This tests whether models can apply accessibility knowledge, not just produce definitions.
 
-| Prompt | 160M | 410M | 1B | 2.8B | 6.9B |
-|--------|------|------|----|------|------|
-| `<img src='photo.jpg'>` missing what | ❌ loops | ❌ loops | ❌ loops | ❌ loops | ❌ loops |
-| `<div>` with onclick not accessible because | ❌ loops | ❌ "not valid HTML" | ❌ "not a `<span>`" | ❌ "not in same document" | ⚠️ "not a form control" |
-| Problem with `<a href='#'></a>` | ❌ | ⚠️ "not clear what user wants" | ❌ "not valid HTML tag" | ❌ "not valid HTML tag" | ❌ "not valid HTML element" |
-| `<input type='text'>` needs a | ❌ "password" | ❌ HTML soup | ❌ "value" | ❌ "value" | ❌ "value" |
-| 'Click here' button is bad because | ❌ | ❌ "not a link" | ❌ "it's a clickable link" | ✅ "not clear what button does" | ✅ "not clear what button does" |
+*Correct = identifies the accessibility violation accurately; Partial = identifies some issue but not the core violation; Incorrect = wrong, off-topic, or loops*
+
+| Prompt                                      | 160M | 410M | 2.8B | 6.9B | 12B |
+| ------------------------------------------- | ---- | ---- | ---- | ---- | --- |
+| `<img src='photo.jpg'>` missing what        | $\times$    | $\times$    | $\times$    | $\times$    | tbd |
+| `<div>` with onclick not accessible because | $\times$    | $\times$    | $\times$    | $\times$    | tbd |
+| Problem with `<a href='#'></a>`             | $\times$    | $\approx$    | $\times$    | $\times$    | tbd |
+| `<input type='text'>` needs a               | $\times$    | $\times$    | $\times$    | $\times$    | tbd |
+| 'Click here' button is bad because          | $\times$    | $\times$    | $\checkmark$    | $\checkmark$    | tbd |
 
 There is a clear gap between declarative and evaluative knowledge. The 2.8B model correctly defines alt text but cannot identify that `<img src='photo.jpg'>` is missing one — it repeats the prompt and stalls at every scale tested. The question explicitly asks what is missing; no model answers "alt text."
 
@@ -49,7 +53,7 @@ The `<div>` onclick responses show a trajectory worth noting. Responses become m
 
 ---
 
-## Experiment 3: Recognition vs. Generation
+### Experiment 3: Recognition vs. Generation
 
 Perplexity measures how expected a sequence is to the model. Lower perplexity means the model finds the text more natural. Testing whether models assign lower perplexity to a correct definition than an incorrect one reveals whether recognition precedes generation.
 
@@ -59,7 +63,7 @@ wrong = "A screen reader is a device for viewing screens."
 ```
 
 | Model | Correct | Wrong | Ratio |
-|-------|---------|-------|-------|
+| :---- | :------ | :---- | :---- |
 | 160M | 106.7 | 41.4 | Wrong by 2.6x |
 | 410M | 40.1 | 32.8 | Wrong by 1.2x |
 | 1B | 18.8 | 42.2 | Correct by 2.2x |
@@ -72,7 +76,7 @@ The 2.8B model shows stronger correct preference than 6.9B (4.0x vs 3.0x). This 
 
 ---
 
-## Experiment 4: Attention Pattern Analysis
+### Experiment 4: Attention Pattern Analysis
 
 Attention pattern analysis across all five Pythia models examines whether models treat "screen reader" as a compound concept or as two independent tokens, and how this binding pattern relates to behavioral emergence.
 
@@ -101,16 +105,19 @@ Several patterns emerge from this data.
 
 All six models show strong binding in layers 0-3, including 160M which cannot produce a correct definition. Whether early-layer binding at small scales reflects genuine compound representation or proximity effects cannot be determined from attention weights alone and is noted as a limitation.
 
-### Control Experiment: Ruling Out Proximity Effects
+#### Control Experiment: Ruling Out Proximity Effects
 
-To test whether the binding signal reflects compound concept encoding rather than simple token adjacency, a control experiment measured attention weights between adjacent token pairs with no compound semantic relationship. Four prompts were tested at 2.8B:
+To test whether the binding signal reflects compound concept encoding rather than simple token adjacency, a control experiment measured attention weights between non-compound token pairs at 2.8B. Two conditions were tested:
 
-- "She drank a glass of cold water" — adjacent semantically related tokens (cold → water)
-- "The castle is very old" — adjective modifying noun (very → old)
-- "She finished her homework, and then she watched a movie" — function words (and → then)
-- "The ancient ruins stood on a very old hill" — semantically related modifier pair
+**Adjacent function words:** "She finished her homework, and then she watched a movie" — measuring attention from "then" (index 7) to "and" (index 6). This pair has high co-occurrence but no semantic dependency relationship.
 
-All four control pairs produced zero heads above the 0.1 threshold. Compare this to 101 heads for "screen reader" under identical conditions. The binding signal is not a proximity artifact.
+**Adjacent modifier-noun pair without disambiguation:** "She drank a glass of cold water" — measuring attention from "water" (index 7) to "cold" (index 6). "Cold" modifies "water" but does not disambiguate it; "water" carries stable meaning without the modifier.
+
+Both control pairs produced strong binding at L1H12 (0.95 and 0.94 respectively) when tokens were adjacent. However, when "then" was separated from "and" by one intervening token, L1H12 dropped out of the top results entirely, suggesting L1H12 is sensitive to token position rather than semantic relationship. Subsequent induction head testing confirmed that L1H12 exhibits previous-token head behavior — it attends systematically to the immediately preceding position regardless of content.
+
+This characterization reframes the control comparison. L1H12's consistent presence across all tested pairs, including accessibility compounds, reflects a general positional mechanism rather than compound-specific processing. The meaningful signal is not L1H12 specifically but the distribution across heads and layers. Accessibility compounds at 2.8B recruit 101-208 heads above threshold, with strong binding persisting to layers 29-30. Function word pairs recruit comparable head counts but do not show the same deep-network persistence pattern. The sustained late-layer binding — not the raw head count — is the distinguishing feature of compound semantic encoding.
+
+A complete analysis isolating which heads are unique to accessibility compounds versus general adjacent-token binding is noted as a direction for future work.
 
 ### Binding Generalizes Across Accessibility Compounds
 
