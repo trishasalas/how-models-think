@@ -8,16 +8,16 @@ Models were tested on ten accessibility concept prompts across all five Pythia s
 
 | Prompt                              | 160M | 410M | 1B  | 2.8B | 6.9B |
 | ----------------------------------- | ---- | ---- | --- | ---- | ---- |
-| A screen reader is                  | ✗    | ✗    | ≈   | ✓    | ≈    |
-| WCAG stands for                     | ✗    | ✗    | ✗   | ✗    | ✓    |
-| A skip link is                      | ✗    | ≈    | ✗   | ✓    | ✗    |
-| The purpose of alt text is          | ✗    | ✗    | ✗   | ✓    | ✓    |
-| ARIA stands for                     | ✗    | ✗    | ✗   | ✗    | ✗    |
-| A focus indicator is                | ✗    | ✗    | ✗   | ✗    | ✗    |
-| Keyboard navigation allows          | ✗    | ✗    | ✗   | ✗    | ✗    |
-| Color contrast is important because | ✗    | ✗    | ✗   | ✗    | ✗    |
-| Semantic HTML helps                 | ✗    | ✗    | ✗   | ✗    | ✗    |
-| Captions are used for               | ✗    | ≈    | ✗   | ≈    | ✗    |
+| A screen reader is                  | $\times$    | $\times$    | $\approx$   | $\checkmark$    | $\approx$    |
+| WCAG stands for                     | $\times$    | $\times$    | $\times$   | $\times$    | $\checkmark$    |
+| A skip link is                      | $\times$    | $\approx$    | $\times$   | $\checkmark$    | $\times$    |
+| The purpose of alt text is          | $\times$    | $\times$    | $\times$   | $\checkmark$    | $\checkmark$    |
+| ARIA stands for                     | $\times$    | $\times$    | $\times$   | $\times$    | $\times$    |
+| A focus indicator is                | $\times$    | $\times$    | $\times$   | $\times$    | $\times$    |
+| Keyboard navigation allows          | $\times$    | $\times$    | $\times$   | $\times$    | $\times$    |
+| Color contrast is important because | $\times$    | $\times$    | $\times$   | $\times$    | $\times$    |
+| Semantic HTML helps                 | $\times$    | $\times$    | $\times$   | $\times$    | $\times$    |
+| Captions are used for               | $\times$    | $\approx$    | $\times$   | $\approx$    | $\times$    |
 
 Several patterns emerge from this data.
 
@@ -35,11 +35,11 @@ The same ten prompts were run across GPT-2 small (117M), medium (406M), large (8
 
 | Prompt             | Small | Medium | Large | XL |
 |--------------------|-------|--------|-------|-----|
-| A screen reader is | ✗     | ✗      | ✗     | ≈   |
-| WCAG stands for    | ✗     | ✗      | ✗     | ✓   |
-| A skip link is     | ✗     | ✗      | ✗     | ✗   |
-| The purpose of alt text is | ✗ | ✗    | ≈     | ≈   |
-| ARIA stands for    | ✗     | ✗      | ✗     | ✗   |
+| A screen reader is | $\times$     | $\times$      | $\times$     | $\approx$   |
+| WCAG stands for    | $\times$     | $\times$      | $\times$     | $\checkmark$   |
+| A skip link is     | $\times$     | $\times$      | $\times$     | $\times$   |
+| The purpose of alt text is | $\times$ | $\times$    | $\approx$     | $\approx$   |
+| ARIA stands for    | $\times$     | $\times$      | $\times$     | $\times$   |
 
 The core findings replicate directionally. WCAG emerges at XL (1.5B) — a lower parameter count than Pythia's 6.9B, consistent with WCAG appearing more densely in WebText's Reddit-sourced content around web standards discussions. Screen reader never fully emerges in GPT-2; even at XL the model produces a partially correct response missing the critical "aloud" detail. ARIA fails at every scale tested in both model families. The declarative–evaluative gap and the pattern of sparse accessibility terms failing at all scales are consistent across architectures.
 
@@ -53,11 +53,11 @@ Models were tested on five code prompts requiring identification of accessibilit
 
 | Prompt                                      | 160M | 410M | 2.8B | 6.9B |
 | ------------------------------------------- | ---- | ---- | ---- | ---- |
-| `<img src='photo.jpg'>` missing what        | ✗    | ✗    | ✗    | ✗    |
-| `<div>` with onclick not accessible because | ✗    | ✗    | ✗    | ✗    |
-| Problem with `<a href='#'></a>`             | ✗    | ≈    | ✗    | ✗    |
-| `<input type='text'>` needs a              | ✗    | ✗    | ✗    | ✗    |
-| 'Click here' button is bad because          | ✗    | ✗    | ✓    | ✓    |
+| `<img src='photo.jpg'>` missing what        | $\times$    | $\times$    | $\times$    | $\times$    |
+| `<div>` with onclick not accessible because | $\times$    | $\times$    | $\times$    | $\times$    |
+| Problem with `<a href='#'></a>`             | $\times$    | $\approx$    | $\times$    | $\times$    |
+| `<input type='text'>` needs a              | $\times$    | $\times$    | $\times$    | $\times$    |
+| 'Click here' button is bad because          | $\times$    | $\times$    | $\checkmark$    | $\checkmark$    |
 
 There is a clear gap between declarative and evaluative knowledge. The 2.8B model correctly defines alt text but cannot identify that `<img src='photo.jpg'>` is missing one — it repeats the prompt and stalls at every scale tested. The question explicitly asks what is missing; no model answers "alt text."
 
