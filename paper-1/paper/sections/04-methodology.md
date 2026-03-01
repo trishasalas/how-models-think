@@ -50,7 +50,7 @@ def get_perplexity(model, text):
     token_log_probs = log_probs[0, :-1, :].gather(1, tokens[0, 1:].unsqueeze(1)).squeeze()
     return torch.exp(-token_log_probs.mean()).item()
 ```
-![Recognition Precedes Generation](../figures/fig2-perplexity-flip.png)
+![Perplexity preference ratio for "screen reader" across Pythia model sizes.](paper/figures/fig-pythia-perplexity.png){fig-alt="Line chart showing perplexity preference ratio for the term screen reader across five Pythia model sizes: 160M, 410M, 1B, 2.8B, and 6.9B. The y-axis is the ratio of wrong to correct definition perplexity; a dashed horizontal line marks 1.0. The line begins below 1.0 at 160M (0.39) and 410M (0.82), crosses the threshold in the shaded flip zone between 410M and 1B, and rises to a peak of 4.0 at 2.8B before declining slightly at 6.9B. Points below 1.0 are plotted in light blue; points above are navy."}
 
 #### Experiment 4: Attention Pattern Analysis
 

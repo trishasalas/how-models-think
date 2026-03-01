@@ -161,7 +161,7 @@ Attention binding was measured across all four GPT-2 model sizes for screen read
 | Large (838M) | 146 | 34 | 15 | 36 |
 | XL (1.5B) | 199 | 37 | 17 | 48 |
 
-The strong head count jump between medium and large (12→34) coincides with the perplexity flip observed in Experiment 3, replicating the Pythia pattern in a different architecture. The last strong layer advances from 10 to 15 at the same transition — consistent with deep-network persistence as a correlate of recognition-level emergence.
+The strong head count jump between medium and large (12 to 34) coincides with the perplexity flip observed in Experiment 3, replicating the Pythia pattern in a different architecture. The last strong layer advances from 10 to 15 at the same transition — consistent with deep-network persistence as a correlate of recognition-level emergence.
 
 At XL, binding was measured for all three compounds:
 

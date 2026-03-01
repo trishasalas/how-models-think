@@ -46,7 +46,7 @@ $if(background-image)$
 \usebackgroundtemplate{\pgfuseimage{background}}
 $endif$
 \usepackage{pgfpages}
-\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption}
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
 \beamertemplatenavigationsymbols$if(navigation)$$navigation$$else$empty$endif$
@@ -257,6 +257,8 @@ $endif$
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
+% Reduce code block font size so long lines fit within the page margins.
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
 $if(tables)$
 \usepackage{longtable,booktabs}
 \usepackage{array}[=2016-10-06]
@@ -296,6 +298,9 @@ $if(graphics)$
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{filename}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% pandoc 3.x wraps includegraphics in \pandocbounded; scaling is handled
+% by the \setkeys above so this can be a passthrough.
+\providecommand{\pandocbounded}[1]{#1}
 % Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
@@ -491,13 +496,20 @@ $if(logo)$
 $endif$
 $endif$
 
+% Title block: title centered between rules; author/affiliation/date justified.
 \makeatletter
 \renewcommand{\maketitle}{%
-  {\raggedright
-  {\Large\bfseries\@title\par}\vspace{0.5em}
-  {\normalsize\@author\par}\vspace{0.25em}
-  {\normalsize\@date\par}\vspace{1em}
-  }
+  \vspace*{-1.5em}%
+  \begin{center}%
+    \noindent\rule{\linewidth}{0.6pt}\par\vspace{0.15em}%
+    {\Large\bfseries\@title\par}\vspace{0.15em}%
+    \noindent\rule{\linewidth}{0.6pt}%
+  \end{center}%
+  \vspace{0.6em}%
+  {\small\@author\hfill%
+$if(affiliation)$  $affiliation$\hfill%
+$endif$  \@date\par}%
+  \vspace{1.5em}%
 }
 \makeatother
 \begin{document}
