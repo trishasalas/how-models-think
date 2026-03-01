@@ -14,6 +14,8 @@ Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., Mann,
 
 Wei, J., Tay, Y., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S., Yogatama, D., Bosma, M., Zhou, D., Metzler, D., Chi, E. H., Hashimoto, T., Vinyals, O., Liang, P., Dean, J., & Fedus, W. (2022). Emergent abilities of large language models. *Transactions on Machine Learning Research*.
 
+Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). Language models are unsupervised multitask learners. *OpenAI Blog*, *1*(8).
+
 Salas, T. (2026, January 18). Testing accessibility knowledge across Pythia model sizes. *trishasalas.com*. https://trishasalas.com/posts/testing-accessibility-knowledge-across-pythia-model-sizes/
 
 Yao, Y., Zhang, N., Xi, Z., Wang, M., Xu, Z., Deng, S., & Chen, H. (2024). Knowledge circuits in pretrained transformers. In *Advances in Neural Information Processing Systems*.

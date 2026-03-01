@@ -6,6 +6,8 @@ This study uses the Pythia model suite (Biderman et al., 2023): 160M, 410M, 1B, 
 
 One architectural exception: Pythia 1B uses a different configuration than the other models in the suite — 16 layers, 8 heads, d_model=2048, d_mlp=8192, with parallel attention and MLP. The other models use 12 heads. This difference is relevant when interpreting per-head binding counts in Experiment 4; comparisons across model sizes account for this asymmetry.
 
+To assess replicability across model families, all four experiments were additionally run on the GPT-2 model suite (Radford et al., 2019): small (117M), medium (406M), large (838M), and XL (1.5B) parameter models. Unlike Pythia, GPT-2 models vary in both layer count and head count across sizes — 12/16/20/25 heads and 12/24/36/48 layers respectively — making direct architectural comparisons across sizes less controlled. GPT-2 was trained on WebText, a dataset of outbound Reddit links, which differs substantially from Pythia's training corpus (The Pile). Results from both model families are reported; cross-architecture comparisons are discussed in Section 5.
+
 ### Experiments
 
 #### Experiment 1: Declarative Knowledge
@@ -17,7 +19,7 @@ model = HookedTransformer.from_pretrained("pythia-2.8b")
 output = model.generate(prompt, max_new_tokens=10, temperature=0)
 ```
 
-Prompts covered core accessibility terms (screen reader, alt text, skip link), foundational acronyms (WCAG, ARIA), and general accessibility concepts (focus indicator, keyboard navigation, color contrast, semantic HTML, captions). Responses were evaluated against known correct definitions.
+Prompts covered core accessibility terms (screen reader, alt text, skip link), foundational acronyms (WCAG, ARIA), and general accessibility concepts (focus indicator, keyboard navigation, color contrast, semantic HTML, captions). Responses were evaluated against known correct completions — definitions for concept prompts, purpose statements for functional prompts, and correct expansions for acronym prompts.
 
 #### Experiment 2: Evaluative Knowledge
 
@@ -30,9 +32,16 @@ Perplexity measures how expected a sequence is to the model, defined as:
 $$PPL(X) = \exp\left(-\frac{1}{N}\sum_{i=1}^{N} \log P(x_i \mid x_{<i})\right)$$
 
 Lower perplexity indicates the model finds the text more natural. Comparing perplexity for a correct and incorrect definition across model sizes reveals whether recognition precedes generation:
+
 ```python
-correct = "A screen reader is software that reads text aloud for blind users."
-wrong = "A screen reader is a device for viewing screens."
+pairs = [
+    ("A screen reader is software that reads text aloud for blind users.",
+     "A screen reader is a device for viewing screens."),
+    ("The purpose of alt text is to provide a textual description of an image for people with visual disabilities",
+     "The purpose of alt text is to make images load faster."),
+    ("A skip link is a navigation aid that allows keyboard users to bypass repetitive content.",
+     "A skip link is a broken hyperlink that does not load."),
+]
 
 def get_perplexity(model, text):
     tokens = model.to_tokens(text)
@@ -41,16 +50,19 @@ def get_perplexity(model, text):
     token_log_probs = log_probs[0, :-1, :].gather(1, tokens[0, 1:].unsqueeze(1)).squeeze()
     return torch.exp(-token_log_probs.mean()).item()
 ```
+![Recognition Precedes Generation](../figures/fig2-perplexity-flip.png)
 
 #### Experiment 4: Attention Pattern Analysis
 
 Attention weights were extracted across all layers and heads for the prompt "A screen reader is" using TransformerLens's activation cache:
+
 ```python
 logits, cache = model.run_with_cache(prompt)
 attention = cache["pattern", layer]  # shape: [heads, seq, seq]
 ```
 
 Token indices were verified for each model prior to analysis:
+
 ```python
 tokens = model.to_str_tokens(prompt)
 print(list(enumerate(tokens)))
@@ -68,8 +80,8 @@ $$H_{\text{moderate}} = \{(l, h) : 0.2 \leq b(t_i, t_j)^{(l,h)} < 0.5\}$$
 
 Heads with $b(t_i, t_j)^{(l,h)} < 0.2$ were treated as background noise and excluded from analysis. Results report $|H_{\text{strong}}|$ as the primary binding count.
 
-This experiment was run for Pythia 2.8B and 6.9B. Additional binding pairs (alt text, skip link) were analyzed at 2.8B specifically, as this was the first model to demonstrate consistent declarative knowledge across Experiment 1. Full attention binding data for all model sizes is available in the project repository.
+This experiment was run for Pythia 2.8B and 6.9B. Additional binding pairs (alt text, skip link) were analyzed at 2.8B specifically, as this was the first model to demonstrate consistent declarative knowledge across Experiment 1. For GPT-2, binding analysis was run across all four model sizes for screen reader, with additional compound pairs (alt text, skip link) analyzed at XL. Full attention binding data for all model sizes is available in the project repository.
 
 ### Reproducibility
 
-All experiments were run with temperature=0 for deterministic outputs on Google Colab with an A100 GPU. Full notebooks are available at https://github.com/trishasalas/mech-interp-research/blob/main/pythia/pythia-a11y-emergence.ipynb.
+All experiments were run with temperature=0 for deterministic outputs on Google Colab with an A100 GPU. Greedy decoding was chosen for mechanistic work to ensure deterministic outputs; stochastic decoding may surface partial knowledge that greedy decoding suppresses, and is noted as a direction for future exploration. Full notebooks are available at https://github.com/trishasalas/mech-interp-research/blob/main/pythia/pythia-a11y-emergence.ipynb.

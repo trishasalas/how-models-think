@@ -8,16 +8,16 @@ Models were tested on ten accessibility concept prompts across all five Pythia s
 
 | Prompt                              | 160M | 410M | 1B  | 2.8B | 6.9B |
 | ----------------------------------- | ---- | ---- | --- | ---- | ---- |
-| A screen reader is                  | $\times$    | $\times$    | $\approx$   | $\checkmark$    | $\approx$    |
-| WCAG stands for                     | $\times$    | $\times$    | $\times$    | $\times$    | $\checkmark$    |
-| A skip link is                      | $\times$    | $\approx$    | $\times$    | $\checkmark$    | $\times$    |
-| The purpose of alt text is          | $\times$    | $\times$    | $\times$    | $\checkmark$    | $\checkmark$    |
-| ARIA stands for                     | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    |
-| A focus indicator is                | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    |
-| Keyboard navigation allows          | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    |
-| Color contrast is important because | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    |
-| Semantic HTML helps                 | $\times$    | $\times$    | $\times$    | $\times$    | $\times$    |
-| Captions are used for               | $\times$    | $\approx$    | $\times$    | $\approx$    | $\times$    |
+| A screen reader is                  | ✗    | ✗    | ≈   | ✓    | ≈    |
+| WCAG stands for                     | ✗    | ✗    | ✗   | ✗    | ✓    |
+| A skip link is                      | ✗    | ≈    | ✗   | ✓    | ✗    |
+| The purpose of alt text is          | ✗    | ✗    | ✗   | ✓    | ✓    |
+| ARIA stands for                     | ✗    | ✗    | ✗   | ✗    | ✗    |
+| A focus indicator is                | ✗    | ✗    | ✗   | ✗    | ✗    |
+| Keyboard navigation allows          | ✗    | ✗    | ✗   | ✗    | ✗    |
+| Color contrast is important because | ✗    | ✗    | ✗   | ✗    | ✗    |
+| Semantic HTML helps                 | ✗    | ✗    | ✗   | ✗    | ✗    |
+| Captions are used for               | ✗    | ≈    | ✗   | ≈    | ✗    |
 
 Several patterns emerge from this data.
 
@@ -29,6 +29,20 @@ Several patterns emerge from this data.
 
 **General accessibility concepts fail across all scales.** Focus indicator, keyboard navigation, color contrast, and semantic HTML produce generic responses at every model size. These terms appear in web-scale training data but without accessibility-specific context. The models complete the prompts plausibly without encoding accessibility meaning.
 
+#### Replication: GPT-2
+
+The same ten prompts were run across GPT-2 small (117M), medium (406M), large (838M), and XL (1.5B).
+
+| Prompt             | Small | Medium | Large | XL |
+|--------------------|-------|--------|-------|-----|
+| A screen reader is | ✗     | ✗      | ✗     | ≈   |
+| WCAG stands for    | ✗     | ✗      | ✗     | ✓   |
+| A skip link is     | ✗     | ✗      | ✗     | ✗   |
+| The purpose of alt text is | ✗ | ✗    | ≈     | ≈   |
+| ARIA stands for    | ✗     | ✗      | ✗     | ✗   |
+
+The core findings replicate directionally. WCAG emerges at XL (1.5B) — a lower parameter count than Pythia's 6.9B, consistent with WCAG appearing more densely in WebText's Reddit-sourced content around web standards discussions. Screen reader never fully emerges in GPT-2; even at XL the model produces a partially correct response missing the critical "aloud" detail. ARIA fails at every scale tested in both model families. The declarative–evaluative gap and the pattern of sparse accessibility terms failing at all scales are consistent across architectures.
+
 ---
 
 ### Experiment 2: Evaluative Knowledge
@@ -39,40 +53,50 @@ Models were tested on five code prompts requiring identification of accessibilit
 
 | Prompt                                      | 160M | 410M | 2.8B | 6.9B |
 | ------------------------------------------- | ---- | ---- | ---- | ---- |
-| `<img src='photo.jpg'>` missing what        | $\times$    | $\times$    | $\times$    | $\times$    |
-| `<div>` with onclick not accessible because | $\times$    | $\times$    | $\times$    | $\times$    |
-| Problem with `<a href='#'></a>`             | $\times$    | $\approx$    | $\times$    | $\times$    |
-| `<input type='text'>` needs a               | $\times$    | $\times$    | $\times$    | $\times$    |
-| 'Click here' button is bad because          | $\times$    | $\times$    | $\checkmark$    | $\checkmark$    |
+| `<img src='photo.jpg'>` missing what        | ✗    | ✗    | ✗    | ✗    |
+| `<div>` with onclick not accessible because | ✗    | ✗    | ✗    | ✗    |
+| Problem with `<a href='#'></a>`             | ✗    | ≈    | ✗    | ✗    |
+| `<input type='text'>` needs a              | ✗    | ✗    | ✗    | ✗    |
+| 'Click here' button is bad because          | ✗    | ✗    | ✓    | ✓    |
 
 There is a clear gap between declarative and evaluative knowledge. The 2.8B model correctly defines alt text but cannot identify that `<img src='photo.jpg'>` is missing one — it repeats the prompt and stalls at every scale tested. The question explicitly asks what is missing; no model answers "alt text."
 
 The only evaluative success is the "Click here" prompt, which succeeds at 2.8B and 6.9B. Ambiguous link text may be more common in training data as a named anti-pattern than missing alt attributes.
 
-The `<div>` onclick responses show a trajectory worth noting. Responses become more specific with scale — from loops at 160M to "not a form control" at 6.9B — without arriving at the correct explanation (keyboard inaccessibility, missing role and tabindex). The 6.9B answer is the closest, pointing toward interactivity expectations, but it does not identify the actual problem.
+The `<div>` onclick responses show a trajectory worth noting. Responses become more specific with scale — from loops at 160M to "not a form control" at 6.9B — without arriving at the correct explanation (keyboard inaccessibility, missing role and tabindex). The 6.9B answer is the closest, pointing toward interactivity expectations, but it does not identify the actual problem. This pattern reflects a broader limitation: models complete code structurally before reasoning semantically. Syntactic plausibility and semantic correctness are separable capabilities, and scale closes the gap only partially.
+
+#### Replication: GPT-2
+
+The same five code prompts were run across all GPT-2 sizes. The declarative–evaluative gap replicates fully. No GPT-2 model identified missing alt text at any scale. "Click here" emerged as a partial success at large (838M) — earlier by parameter count than Pythia's 2.8B — but regressed at XL, consistent with the instability observed near emergence thresholds in both model families. The evaluative gap does not close at any scale tested in either architecture.
 
 ---
 
 ### Experiment 3: Recognition vs. Generation
 
-Perplexity measures how expected a sequence is to the model. Lower perplexity means the model finds the text more natural. Testing whether models assign lower perplexity to a correct definition than an incorrect one reveals whether recognition precedes generation.
+Perplexity measures how expected a sequence is to the model. Lower perplexity means the model finds the text more natural. Testing whether models assign lower perplexity to a correct definition than an incorrect one reveals whether recognition precedes generation. This experiment was extended to three accessibility compounds to assess whether the recognition-before-generation pattern generalizes.
 
-```
-correct = "A screen reader is software that reads text aloud for blind users."
-wrong = "A screen reader is a device for viewing screens."
-```
+| Model | Screen Reader | Alt Text | Skip Link |
+|-------|--------------|----------|-----------|
+| 160M | Wrong 2.6x | Wrong 1.2x | Wrong 1.9x |
+| 410M | Wrong 1.2x | Correct 2.8x | Wrong 1.7x |
+| 1B | Correct 2.2x | Correct 1.9x | Wrong 1.3x |
+| 2.8B | Correct 4.0x | Correct 1.9x | Wrong 1.1x |
+| 6.9B | Correct 3.0x | Correct 3.1x | Wrong 1.8x |
 
-| Model | Correct | Wrong | Ratio |
-| :---- | :------ | :---- | :---- |
-| 160M | 106.7 | 41.4 | Wrong by 2.6x |
-| 410M | 40.1 | 32.8 | Wrong by 1.2x |
-| 1B | 18.8 | 42.2 | Correct by 2.2x |
-| 2.8B | 13.6 | 54.9 | Correct by 4.0x |
-| 6.9B | 15.6 | 46.1 | Correct by 3.0x |
+The preference for screen reader flips between 410M and 1B — recognition precedes generation by one model size. Alt text flips earlier, between 160M and 410M, suggesting it is more densely represented in training data. Skip link never flips; the model finds the incorrect definition more natural at every scale, consistent with the behavioral instability observed in Experiment 1.
 
-The preference flips between 410M and 1B. At 160M and 410M the model finds the wrong definition more natural; at 1B it prefers the correct one. This flip precedes the generation threshold by one model size — 1B recognizes the correct definition before 2.8B can produce it.
+The recognition-before-generation pattern holds for two of three compounds tested. Skip link remains the exception across both perplexity and declarative experiments, indicating that some concepts may achieve surface-level generation without the underlying representational grounding that perplexity preference reflects.
 
-The 2.8B model shows stronger correct preference than 6.9B (4.0x vs 3.0x). This is consistent with the non-monotonic pattern observed in declarative results: the relationship between scale and capability is not strictly linear near emergence thresholds.
+#### Replication: GPT-2
+
+| Model | Screen Reader | Alt Text | Skip Link |
+|-------|--------------|----------|-----------|
+| Small (117M) | Wrong 1.1x | Correct 1.7x | Wrong 1.3x |
+| Medium (406M) | Wrong 1.1x | Correct 1.8x | Wrong 1.4x |
+| Large (838M) | Correct 2.0x | Correct 1.6x | Wrong 2.5x |
+| XL (1.5B) | Correct 2.6x | Correct 2.1x | Wrong 1.8x |
+
+The screen reader preference flips between medium (406M) and large (838M) in GPT-2 — a remarkably similar parameter range to the Pythia flip between 410M and 1B, despite different architectures and training corpora. Alt text is correct-preferring from small in GPT-2, earlier than in Pythia, consistent with its denser representation in web-focused training data. Skip link never flips in either model family. The recognition-before-generation pattern for screen reader replicates across architectures.
 
 ---
 
@@ -100,7 +124,7 @@ Several patterns emerge from this data.
 
 **Last strong layer tracks behavioral emergence.** Below the 2.8B emergence threshold, strong binding drops off early — layer 11 for 160M, layer 9 for 410M, layer 6 for 1B. At 2.8B and above, strong binding persists deep into the network — layers 29 and 30 for 2.8B and 6.9B respectively. The models that cannot correctly define screen reader do not sustain compound binding through the network. The models that can, do.
 
-**2.8B is the inflection point.** Total heads above threshold jumps from 28 (1B) to 101 (2.8B) — a 3.6x increase that coincides exactly with the behavioral emergence threshold identified in Experiment 1. This suggests that robust, sustained attention binding across many heads is a mechanistic correlate of accessibility concept emergence, not merely a consequence of larger model size.
+**2.8B is the inflection point.** Total heads above threshold jumps from 28 (1B) to 101 (2.8B) — a 3.6x increase that coincides exactly with the behavioral emergence threshold identified in Experiment 1. Early binding is not representational; late binding is. The presence of sustained late-layer binding appears to be a mechanistic bottleneck for concept emergence.
 
 All six models show strong binding in layers 0-3, including 160M which cannot produce a correct definition. Whether early-layer binding at small scales reflects genuine compound representation or proximity effects cannot be determined from attention weights alone and is noted as a limitation.
 
@@ -125,3 +149,26 @@ All three compounds show the same pattern of early-layer concentration with deep
 This rules out a compound-specific explanation. The binding pattern is not an artifact of how "screen reader" tokenizes or how frequently it appears in training data. It is a general property of accessibility compound terms at the 2.8B emergence threshold. The models that can define these concepts correctly show robust, distributed binding across many heads and many layers. The models that cannot show weak binding that drops off early.
 
 The binding pattern generalizes across all three accessibility compounds tested at 2.8B — screen reader, alt text, and skip link — ruling out a term-specific explanation and strengthening the case for a general mechanistic threshold at this scale.
+
+#### Replication: GPT-2
+
+Attention binding was measured across all four GPT-2 model sizes for screen reader, with additional compounds (alt text, skip link) analyzed at XL.
+
+| Model | Total >0.1 | Strong (0.5+) | Last Strong Layer | Max Layers |
+|-------|-----------|--------------|-------------------|------------|
+| Small (117M) | 41 | 6 | 4 | 12 |
+| Medium (406M) | 66 | 12 | 10 | 24 |
+| Large (838M) | 146 | 34 | 15 | 36 |
+| XL (1.5B) | 199 | 37 | 17 | 48 |
+
+The strong head count jump between medium and large (12→34) coincides with the perplexity flip observed in Experiment 3, replicating the Pythia pattern in a different architecture. The last strong layer advances from 10 to 15 at the same transition — consistent with deep-network persistence as a correlate of recognition-level emergence.
+
+At XL, binding was measured for all three compounds:
+
+| Compound | Total >0.1 | Strong (0.5+) | Last Strong Layer |
+|----------|-----------|--------------|-------------------|
+| Screen reader | 199 | 37 | 17 |
+| Alt text | 244 | 34 | 19 |
+| Skip link | 253 | 49 | 43 |
+
+One divergence from Pythia is notable. GPT-2 XL's last strong layer as a proportion of total network depth is substantially shallower than Pythia 2.8B — approximately 35% vs 91%. This may reflect differences in training data composition: Pythia's training corpus (The Pile) includes technical documentation, Stack Exchange, and academic text where accessibility terminology appears in consistent, well-formed contexts. GPT-2's WebText corpus is dominated by general web content where the same terms appear more diffusely. The shallower binding depth in GPT-2 may account for the weaker and less stable behavioral emergence observed in Experiment 1.

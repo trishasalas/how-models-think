@@ -6,4 +6,6 @@
 
 **Attention as an interpretability tool.** Clark et al. (2019) showed that attention patterns in BERT encode linguistically meaningful relationships, establishing attention visualization as a valid method for probing internal representations. This work applies the same approach to compound accessibility terms, asking whether models bind multi-token concepts as units.
 
+**Mechanistic interpretability.** Olsson et al. (2022) characterized induction circuits and previous-token heads in transformer models, providing the framework used here to interpret early-layer binding patterns. The distinction between positional binding mechanisms and representational binding — central to the control analysis in this paper — draws directly on their circuit taxonomy.
+
 **AI and digital accessibility.** A growing body of work applies AI to accessibility tasks — generating alt text, detecting contrast failures, automating WCAG audits. This paper takes the inverse approach: rather than using AI as an accessibility tool, it examines what AI systems actually know about accessibility and when that knowledge emerges.

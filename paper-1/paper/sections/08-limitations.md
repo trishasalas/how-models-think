@@ -1,6 +1,6 @@
 ## Limitations
 
-This paper reports findings from a first investigation into accessibility concept emergence across Pythia model scales. Several limitations should be considered when interpreting the results.
+This paper reports findings from a first investigation into accessibility concept emergence across Pythia model scales, with replication across GPT-2. Several limitations should be considered when interpreting the results.
 
 ### Prompt Design
 
@@ -14,7 +14,7 @@ The evaluative experiment used zero-shot code completion prompts. The image miss
 
 ### Perplexity Experiment Scope
 
-Recognition versus generation was tested using a single sentence pair for one concept (screen reader). The preference flip between 410M and 1B is a clear finding, but a single pair is insufficient to establish this as a general pattern. A broader set of correct/incorrect pairs across multiple accessibility concepts would strengthen the recognition-precedes-generation claim.
+Recognition versus generation was tested using three sentence pairs across screen reader, alt text, and skip link. The preference flip is a clear finding for screen reader and alt text, but skip link fails to flip in either model family, suggesting the recognition-before-generation pattern does not hold uniformly across all accessibility compounds. A broader set of correct/incorrect pairs across additional concepts would further characterize which compounds follow this pattern and which do not.
 
 ### Attention Binding Methodology
 
@@ -22,10 +22,18 @@ The proximity control experiment was run at 2.8B only. Control testing revealed 
 
 The compound generalization finding — that alt text and skip link show comparable binding to screen reader at 2.8B — is based on head counts above the 0.1 threshold across all three compounds.
 
+### Cross-Architecture Comparison
+
+GPT-2 models vary in both layer count and head count across sizes, making direct per-head comparisons across model sizes less controlled than Pythia's uniform architecture. The binding depth comparison between GPT-2 and Pythia is expressed as a proportion of total network depth to account for this, but the architectures are not directly commensurable. Additional replication on architectures with controlled scaling (such as other Pythia-style suites) would strengthen the cross-architecture claims.
+
+### Greedy Decoding
+
+All experiments were run with temperature=0 for deterministic outputs. Greedy decoding ensures reproducibility but may suppress partial knowledge that stochastic decoding could surface. Models with partial accessibility encoding may perform differently under sampling-based generation. This is noted as a direction for future exploration.
+
 ### Hardware and Reproducibility
 
 All experiments were run on Google Colab with an A100 GPU. All notebooks are available in the project repository for independent verification.
 
 ### Scale Coverage
 
-The scale ladder covers 160M through 6.9B parameters. ARIA fails to emerge at any scale tested. Whether ARIA would emerge at larger scales is unknown. The evaluative gap — models that define concepts cannot identify violations — was not tested beyond 6.9B. Both findings may reflect limitations of the scale range rather than fundamental properties of these concepts.
+The scale ladder covers 160M through 6.9B parameters for Pythia and 117M through 1.5B for GPT-2. ARIA fails to emerge at any scale tested in either model family. Whether ARIA would emerge at larger scales is unknown. The evaluative gap — models that define concepts cannot identify violations — was not tested beyond 6.9B. Both findings may reflect limitations of the scale range rather than fundamental properties of these concepts.
