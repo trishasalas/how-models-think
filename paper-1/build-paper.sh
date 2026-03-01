@@ -18,6 +18,7 @@ pandoc \
   "$SECTIONS/06-discussion.md" \
   "$SECTIONS/07-conclusion.md" \
   "$SECTIONS/08-limitations.md" \
+  "$SECTIONS/09-references.md" \
   -o "$OUTPUT" \
   --pdf-engine=lualatex \
   --template=paper/template.tex \

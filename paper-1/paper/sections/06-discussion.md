@@ -1,6 +1,6 @@
 ## Discussion
 
-This paper examined accessibility concept acquisition across Pythia model scales using four complementary methods: behavioral generation, code evaluation, perplexity-based recognition, and attention pattern analysis. The results converge on a consistent picture with several implications for both accessibility tooling and emergence research.
+This paper examined accessibility concept acquisition across Pythia model scales using mechanistic analysis, perplexity-based recognition, and behavioral evaluation. The results converge on a consistent picture with several implications for both accessibility tooling and emergence research.
 
 ### The 2.8B Threshold Is Meaningful, Not Arbitrary
 
@@ -22,18 +22,19 @@ For accessibility tooling practitioners, this gap is the central finding. A mode
 
 WCAG and ARIA show qualitatively different failure patterns than conceptual terms. Conceptual terms show emergence — partial at 1B, correct at 2.8B. Acronyms either emerge very late (WCAG at 6.9B) or not at all (ARIA at any scale tested). The ARIA failure is particularly informative: hallucinated expansions become more fluent and confident with scale without becoming accurate. At 160M, ARIA produces gibberish. At 6.9B, it produces a coherent but wrong expansion ("Association of Research Libraries in Africa") with apparent conviction.
 
-This suggests WCAG and ARIA are rare enough in web-scale training data that standard scaling cannot reliably encode them. Specialized training data or fine-tuning is likely required for reliable acronym expansion in the accessibility domain.
+This suggests WCAG and ARIA are rare enough in web-scale training data that standard scaling cannot reliably encode them. This pattern is consistent with findings on knowledge frequency effects in parametric memory: model accuracy on factual recall correlates with entity popularity in training data, and rare entities produce confident confabulation rather than correct retrieval (Mallen et al., 2023). Specialized training data or fine-tuning is likely required for reliable acronym expansion in the accessibility domain.
 
 ### Attention Binding as a Correlate of Emergence
 
 The sustained attention binding pattern at 2.8B and 6.9B — strong binding persisting to layers 29-30 versus dropping off at layers 6-11 in smaller models — provides a mechanistic correlate for behavioral emergence. The models that can define screen reader sustain the compound binding across the full network. The models that cannot drop it early.
 
-This finding is correlational, not causal. Whether sustained binding causes correct generation, or both are consequences of a third factor such as MLP encoding depth, cannot be determined from attention weights alone. The presence of strong early-layer binding in 160M — including one head at perfect score 1.0 — despite behavioral failure suggests early binding is necessary but not sufficient for emergence. Whether this reflects genuine compound representation or proximity effects in the absence of higher-level context remains an open question for future probing work.
+This finding is correlational, not causal. Whether sustained binding causes correct generation, or both are consequences of a third factor such as MLP encoding depth, cannot be determined from attention weights alone (Geva et al., 2021). The presence of strong early-layer binding in 160M — including one head at perfect score 1.0 — despite behavioral failure suggests early binding is necessary but not sufficient for emergence. Whether this reflects genuine compound representation or proximity effects in the absence of higher-level context remains an open question for future probing work.
 
-Induction head testing confirmed that L1H12 exhibits previous-token head behavior — it attends systematically to the immediately preceding position regardless of content or semantic relationship. This is a known circuit component in transformer models and is distinct from compound-specific binding. The consistent appearance of L1H12 across accessibility compounds, function word pairs, and general modifier-noun pairs is explained by this positional mechanism rather than accessibility-specific encoding. The relevant mechanistic signal is the distribution and persistence of binding across the full head population, not the behavior of any individual head.
 
 ### Relationship to Prior Work
 
 Wei et al. (2022) established emergence as a general phenomenon. This paper treats accessibility concept acquisition as a domain-specific case study with properties that make it a productive probe: concepts are rare enough to show scale sensitivity, evaluable against clear ground truth, and directly relevant to real-world applications. The results confirm that emergence operates in specialized domains but with domain-specific timing — accessibility acronyms require substantially more scale than conceptual terms, and evaluative capability does not emerge within the range tested.
+
+Prior work on accessibility and LLMs has focused primarily on behavioral evaluation — whether models can identify or remediate violations. The present study adds a mechanistic dimension: not only what models know but how that knowledge is structurally encoded, and at what point in the network that encoding becomes sufficient for generation.
 
 The finding that general accessibility concepts (focus indicator, keyboard navigation, color contrast, semantic HTML) fail across all scales suggests training data frequency is the limiting factor, not model capacity per se. These terms appear in web-scale data but without the accessibility-specific context required for meaningful representation.

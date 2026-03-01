@@ -25,8 +25,11 @@ Five code prompts were run against each model (temperature=0, max_new_tokens=20)
 
 #### Experiment 3: Recognition vs. Generation
 
-Perplexity was computed for a correct and incorrect definition of "screen reader" across all model sizes:
+Perplexity measures how expected a sequence is to the model, defined as:
 
+$$PPL(X) = \exp\left(-\frac{1}{N}\sum_{i=1}^{N} \log P(x_i \mid x_{<i})\right)$$
+
+Lower perplexity indicates the model finds the text more natural. Comparing perplexity for a correct and incorrect definition across model sizes reveals whether recognition precedes generation:
 ```python
 correct = "A screen reader is software that reads text aloud for blind users."
 wrong = "A screen reader is a device for viewing screens."
@@ -39,25 +42,33 @@ def get_perplexity(model, text):
     return torch.exp(-token_log_probs.mean()).item()
 ```
 
-Lower perplexity indicates the model finds the text more expected. Comparing correct vs. incorrect perplexity across model sizes reveals whether recognition of correct definitions precedes the ability to generate them.
-
 #### Experiment 4: Attention Pattern Analysis
 
 Attention weights were extracted across all layers and heads for the prompt "A screen reader is" using TransformerLens's activation cache:
-
 ```python
 logits, cache = model.run_with_cache(prompt)
 attention = cache["pattern", layer]  # shape: [heads, seq, seq]
 ```
 
 Token indices were verified for each model prior to analysis:
-
 ```python
 tokens = model.to_str_tokens(prompt)
 print(list(enumerate(tokens)))
 ```
 
-Binding strength between "reader" and "screen" was measured as the attention weight from the "reader" token to the "screen" token. Heads with attention weight above 0.1 were recorded. Weights above 0.5 were considered strong binding; weights between 0.2 and 0.5 moderate; weights below 0.2 were treated as background noise and excluded from analysis. This experiment was run for Pythia 2.8B and 6.9B. Full attention binding data for all model sizes is available in the project repository.
+Binding strength between tokens $t_i$ ("reader") and $t_j$ ("screen") was measured as the scalar attention weight:
+
+$$b(t_i, t_j) = A^{(l,h)}_{ij}$$
+
+where $A^{(l,h)}$ is the attention weight matrix at layer $l$, head $h$, extracted from the activation cache. Heads were classified into binding tiers based on $b(t_i, t_j)^{(l,h)}$:
+
+$$H_{\text{strong}} = \{(l, h) : b(t_i, t_j)^{(l,h)} \geq 0.5\}$$
+
+$$H_{\text{moderate}} = \{(l, h) : 0.2 \leq b(t_i, t_j)^{(l,h)} < 0.5\}$$
+
+Heads with $b(t_i, t_j)^{(l,h)} < 0.2$ were treated as background noise and excluded from analysis. Results report $|H_{\text{strong}}|$ as the primary binding count.
+
+This experiment was run for Pythia 2.8B and 6.9B. Additional binding pairs (alt text, skip link) were analyzed at 2.8B specifically, as this was the first model to demonstrate consistent declarative knowledge across Experiment 1. Full attention binding data for all model sizes is available in the project repository.
 
 ### Reproducibility
 

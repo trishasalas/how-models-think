@@ -1,6 +1,6 @@
 ## Conclusion
 
-This paper mapped accessibility concept acquisition across five Pythia model sizes using behavioral, perplexity-based, and mechanistic analysis. The findings establish a clear picture of how and when accessibility knowledge emerges in language models trained on web-scale data.
+This paper mapped accessibility concept acquisition across five Pythia model sizes using mechanistic analysis, perplexity-based recognition, and behavioral evaluation. The findings establish a clear picture of how and when accessibility knowledge emerges in language models trained on web-scale data.
 
 Core accessibility concepts — screen reader, alt text, skip link — emerge behaviorally at 2.8B parameters. Foundational acronyms require more scale (WCAG at 6.9B) or fail entirely (ARIA at all scales tested). General accessibility vocabulary fails across all model sizes, suggesting training data frequency as the limiting factor rather than model capacity. Evaluative capability — identifying accessibility violations in code — does not emerge within the range tested, even in models that correctly define the relevant concepts.
 

@@ -20,7 +20,7 @@ Recognition versus generation was tested using a single sentence pair for one co
 
 The proximity control experiment was run at 2.8B only. Control testing revealed that adjacent token pairs — including function word pairs and modifier-noun pairs without disambiguation — produce strong binding at L1H12, which was subsequently confirmed as a previous-token head attending systematically to the immediately preceding position regardless of content. This finding limits the interpretation of L1H12's consistent appearance across accessibility compounds. Whether other heads show accessibility-specific binding patterns that do not appear in non-compound controls has not been fully characterized and is noted as a direction for future work. Early-layer binding at 160M (including Layer 11 Head 8 at score 1.0) remains ambiguous. Whether this reflects genuine compound representation or positional attention at small scales cannot be determined from attention weights alone.
 
-The compound generalization finding — that alt text and skip link show comparable binding to screen reader at 2.8B — is based on head counts above threshold across all three compounds.
+The compound generalization finding — that alt text and skip link show comparable binding to screen reader at 2.8B — is based on head counts above the 0.1 threshold across all three compounds.
 
 ### Hardware and Reproducibility
 
