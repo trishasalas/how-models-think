@@ -2,3 +2,10 @@
 .DS_Store
 .idea/
 __pycache__/
+notes/
+data/
+memory/
+paper-2/
+paper-3/
+
+CLAUDE.md
