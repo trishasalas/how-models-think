@@ -1,6 +1,0 @@
-{"prompt_id": "wcag", "template": "The W in WCAG stands for", "target": " Web", "task": "generation"}
-{"prompt_id": "aria", "template": "ARIA stands for Accessible Rich Internet", "target": " Applications", "task": "generation"}
-{"prompt_id": "alt", "template": "The purpose of alt text is to describe an", "target": " image", "task": "generation"}
-{"prompt_id": "HTML", "template": "In HTML, the alt attribute provides a text description of an", "target": " image", "task": "generation"}
-{"prompt_id": "screenReader", "template": "A blind person uses a screen", "target": " reader", "task": "generation"}
-{"prompt_id": "screenReaderv1", "template": "A screen reader is", "target": " software", "task": "generation"}
