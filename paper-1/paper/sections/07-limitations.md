@@ -1,10 +1,10 @@
 ## Limitations
 
-This paper reports findings from a first investigation into accessibility concept emergence across Pythia model scales, with replication across GPT-2. Several limitations should be considered when interpreting the results.
+We report findings from a first investigation into accessibility concept emergence across the Pythia model suite, with replication across GPT-2. Several limitations should be considered when interpreting the results.
 
 ### Prompt Design
 
-All experiments used completion-style prompts ("A screen reader is," "WCAG stands for") rather than instruction or question formats. Prompt framing is known to affect retrieval in language models, and this paper's own findings support that sensitivity. The alt text retrieval experiment demonstrated that the HTML-framed prompt ("In HTML, the alt attribute provides a text description of an") performed worse than the simpler framing despite testing identical knowledge. Results reported here reflect one prompt design choice and may not generalize to other framings.
+All experiments used completion-style prompts ("A screen reader is," "WCAG stands for") rather than instruction or question formats. Prompt framing is known to affect retrieval in language models, and our own findings support that sensitivity. The alt text retrieval experiment demonstrated that the HTML-framed prompt ("In HTML, the alt attribute provides a text description of an") performed worse than the simpler framing despite testing identical knowledge. Results reported here reflect one prompt design choice and may not generalize to other framings.
 
 The declarative prompts were adapted from attention binding experiments rather than designed independently for behavioral testing. Future work should compare multiple prompt formulations to establish which results are robust across framings.
 

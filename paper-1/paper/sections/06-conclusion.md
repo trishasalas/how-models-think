@@ -1,6 +1,6 @@
 ## Conclusion
 
-This paper mapped accessibility concept acquisition across five Pythia model sizes using mechanistic analysis, perplexity-based recognition, and behavioral evaluation, with replication across the GPT-2 model suite. The findings establish a consistent picture of how and when accessibility knowledge emerges in language models trained on web-scale data.
+We examined accessibility concept acquisition across five Pythia model sizes using mechanistic analysis, perplexity-based recognition, and behavioral evaluation, with replication across the GPT-2 model suite. The findings establish a consistent picture of how and when accessibility knowledge emerges in language models trained on web-scale data.
 
 Core accessibility concepts — screen reader, alt text, skip link — emerge behaviorally at 2.8B parameters in Pythia. Foundational acronyms require more scale (WCAG at 6.9B) or fail entirely (ARIA at all scales tested). General accessibility vocabulary fails across all model sizes in both model families, suggesting training data frequency as the limiting factor rather than model capacity. Evaluative capability — identifying accessibility violations in code — does not emerge within the range tested, even in models that correctly define the relevant concepts.
 
@@ -10,4 +10,4 @@ For practitioners building accessibility tooling on language models, the central
 
 For emergence researchers, accessibility concepts offer a useful probe domain: rare enough to show scale sensitivity, concrete enough to evaluate against ground truth, and distinct enough from general knowledge to isolate domain-specific acquisition. The ARIA confabulation pattern — increasingly fluent wrong answers with scale — illustrates a failure mode that definition-based benchmarks would not detect.
 
-The mechanistic findings here are correlational. Whether sustained attention binding causes behavioral emergence or reflects a common underlying factor requires causal analysis beyond the scope of this paper, and is a direction for future work.
+The mechanistic findings here are correlational. Whether sustained attention binding causes behavioral emergence or reflects a common underlying factor requires causal analysis beyond the scope of this study, and is a direction for future work.

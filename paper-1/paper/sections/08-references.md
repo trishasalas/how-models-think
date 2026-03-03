@@ -8,14 +8,16 @@ Geva, M., Schuster, R., Berant, J., & Levy, O. (2021). Transformer feed-forward 
 
 Mallen, A., Shi, W., Michael, J., D'Arcy, S., Wiegreffe, A., & Hajishirzi, H. (2023). When not to trust language models: Investigating effectiveness of parametric and non-parametric memories. In *Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics*.
 
+McKenzie, I. R., Lyzhov, A., Pieler, M., Parrish, A., Mueller, A., Prabhu, A., McLean, E., Kirtland, A., Ross, A., Liu, A., Gritsevskiy, A., Wurgaft, D., Kauffman, D., Recchia, G., Liu, J., Cavanagh, J., Weiss, M., Huang, S., Droid, F., Tseng, T., Korbak, T., Shen, X., Zhang, Y., Zhou, Z., Kim, N., Bowman, S. R., & Perez, E. (2023). Inverse scaling: When bigger isn't better. *Transactions on Machine Learning Research*.
+
 Nanda, N., & Bloom, J. (2022). TransformerLens [Software]. GitHub. https://github.com/TransformerLensOrg/TransformerLens
 
 Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., Mann, B., Askell, A., Bai, Y., Chen, A., Conerly, T., Drain, D., Ganguli, D., Hatfield-Dodds, Z., Hernandez, D., Johnston, S., Jones, A., Kernion, J., Lovitt, L., Ndousse, K., Amodei, D., Brown, T., Clark, J., Kaplan, J., McCandlish, S., & Olah, C. (2022). In-context learning and induction heads. *Transformer Circuits Thread*. https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
 
-Wei, J., Tay, Y., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S., Yogatama, D., Bosma, M., Zhou, D., Metzler, D., Chi, E. H., Hashimoto, T., Vinyals, O., Liang, P., Dean, J., & Fedus, W. (2022). Emergent abilities of large language models. *Transactions on Machine Learning Research*.
-
 Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). Language models are unsupervised multitask learners. *OpenAI Blog*, *1*(8).
 
 Salas, T. (2026, January 18). Testing accessibility knowledge across Pythia model sizes. *trishasalas.com*. https://trishasalas.com/posts/testing-accessibility-knowledge-across-pythia-model-sizes/
+
+Wei, J., Tay, Y., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S., Yogatama, D., Bosma, M., Zhou, D., Metzler, D., Chi, E. H., Hashimoto, T., Vinyals, O., Liang, P., Dean, J., & Fedus, W. (2022). Emergent abilities of large language models. *Transactions on Machine Learning Research*.
 
 Yao, Y., Zhang, N., Xi, Z., Wang, M., Xu, Z., Deng, S., & Chen, H. (2024). Knowledge circuits in pretrained transformers. In *Advances in Neural Information Processing Systems*.
