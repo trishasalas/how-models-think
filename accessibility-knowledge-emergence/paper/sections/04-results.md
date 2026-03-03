@@ -118,13 +118,13 @@ Attention pattern analysis across all five Pythia models examines whether models
 
 For each model, attention weights from "reader" to "screen" were extracted across all layers and heads. Heads with weight above 0.5 are considered strong binding; the full data is available in the project repository.
 
-| Model | Layers | Strong (0.5+) | Strong in L0-3 | % Early | Last Strong Layer |
-|-------|--------|--------------|----------------|---------|-------------------|
-| 160M | 12 | 10 | 7 | 70% | 11 |
-| 410M | 24 | 22 | 16 | 73% | 9 |
-| 1B | 16 | 11 | 10 | 91% | 6 |
-| 2.8B | 32 | 25 | 20 | 80% | 29 |
-| 6.9B | 32 | 37 | 28 | 76% | 30 |
+| Model | Layers | Strong (0.5+) | Early (L0-3) | Last Layer |
+|-------|--------|--------------|--------------|------------|
+| 160M | 12 | 10 | 7 | 11 |
+| 410M | 24 | 22 | 16 | 9 |
+| 1B | 16 | 11 | 10 | 6 |
+| 2.8B | 32 | 25 | 20 | 29 |
+| 6.9B | 32 | 37 | 28 | 30 |
 
 Note: 1B's architectural difference (8 heads vs 12) affects raw head counts; see Methodology.
 

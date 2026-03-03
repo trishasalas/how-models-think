@@ -257,6 +257,14 @@ $endif$
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
+% Increase table cell padding
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.4}
+
+% Smaller figure captions
+\usepackage{caption}
+\captionsetup{font=small}
+
 % Reduce code block font size so long lines fit within the page margins.
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
 $if(tables)$

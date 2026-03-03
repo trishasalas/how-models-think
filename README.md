@@ -1,5 +1,5 @@
 # How Models Think
-## A three-paper series on accessibility knowledge in language models
+## A research series on accessibility knowledge in language models
 
 **Author:** Trisha Salas  
 **Series question:** How do language models acquire, represent, and store
@@ -10,7 +10,7 @@ the limits and possibilities of AI-powered accessibility tooling?
 
 ## The Papers
 
-### [Paper 1: Testing Accessibility Knowledge Across Pythia Model Sizes](./paper-1-emergence/)
+### [Paper 1: Accessibility Knowledge Emergence: Behavioral and Mechanistic Evidence from the Pythia and GPT-2 Model Suites](./paper-1-emergence/)
 *Published January 2026*
 
 Behavioral emergence study. When do accessibility concepts (screen reader,
@@ -18,20 +18,8 @@ alt text, WCAG, ARIA) become accessible to model outputs? Answer: 2.8B
 parameters for most concepts, never for ARIA. Recognition precedes generation.
 Code: [mech-interp-research](https://github.com/trishasalas/mech-interp-research)
 
-### [Paper 2: Does Accessibility Knowledge Exist Before It Emerges?](./paper-2-probing/)
+### Papers 2 and 3
 *In progress*
-
-Linear probing study. Is accessibility knowledge geometrically present in
-smaller models before the behavioral threshold? Bridges Paper 1's behavioral
-findings to Paper 3's mechanistic findings.
-
-### [Paper 3: How Models Think About Accessibility](./paper-3-mechanistic/)
-*In progress*
-
-Mechanistic study. Using causal tracing, logit lens, and MLP/attention
-decomposition on GPT-2 Medium/Large/XL to understand *how* accessibility
-knowledge is stored — and whether it uses different mechanisms than general
-factual knowledge.
 
 ---
 
@@ -59,6 +47,4 @@ how-models-think/
 
 ## Note on repo history
 
-*February 2026: Restructured as three-paper series. Original GPT-2 mechanistic
-notebooks and results moved to `paper-3-mechanistic/`. Paper 2 probing work
-added. Shared `src/` library extracted from notebook code.*
+*February 2026: Restructured as multi-paper series. Shared `src/` library extracted from notebook code.*
