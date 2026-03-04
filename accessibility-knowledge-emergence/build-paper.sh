@@ -22,6 +22,7 @@ OUTPUT="accessibility-knowledge-emergence.pdf"
 SECTIONS="paper/sections"
 
 pandoc \
+  --from markdown-implicit_figures \
   --metadata-file=paper/metadata.yaml \
   "$SECTIONS/01-introduction.md" \
   "$SECTIONS/02-related.md" \
