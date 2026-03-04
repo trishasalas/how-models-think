@@ -205,12 +205,11 @@ if __name__ == "__main__":
         models    = ["160M", "410M", "1B", "2.8B", "6.9B"],
         ratios    = pythia_ratios,
         flip_zone = (1, 2),   # between index 1 (410M) and index 2 (1B)
-        title     = "Recognition Precedes Generation — Pythia",
-        subtitle  = "Perplexity preference ratio for screen reader: correct vs wrong definition",
+        title     = "",
+        subtitle  = "",
         caption   = (
-            "Preference ratio = wrong ppl / correct ppl. "
-            "Values above 1.0 indicate the model finds the correct definition more natural. "
-            "Pythia flip occurs between 410M and 1B."
+            ""
+            ""
         ),
         fig_path  = FIGURES_DIR / "fig-pythia-perplexity.png",
     )

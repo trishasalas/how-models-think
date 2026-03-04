@@ -31,7 +31,7 @@ Several patterns emerge from this data.
 
 **General accessibility concepts fail across all scales.** Focus indicator, keyboard navigation, color contrast, and semantic HTML produce generic responses at every model size. These terms appear in web-scale training data but without accessibility-specific context. The models complete the prompts plausibly without encoding accessibility meaning.
 
-#### Replication: GPT-2
+**Replication: GPT-2**
 
 The same ten prompts were run across GPT-2 small (117M), medium (406M), large (838M), and XL (1.5B).
 
@@ -43,9 +43,8 @@ The same ten prompts were run across GPT-2 small (117M), medium (406M), large (8
 | The purpose of alt text is | $\times$ | $\times$    | $\approx$     | $\approx$   |
 | ARIA stands for    | $\times$     | $\times$      | $\times$     | $\times$   |
 
-The core findings replicate directionally. WCAG emerges at XL (1.5B) — a lower parameter count than Pythia's 6.9B, consistent with WCAG appearing more densely in WebText's Reddit-sourced content around web standards discussions. Screen reader never fully emerges in GPT-2; even at XL the model produces a partially correct response missing the critical "aloud" detail. ARIA fails at every scale tested in both model families. The declarative–evaluative gap and the pattern of sparse accessibility terms failing at all scales are consistent across architectures.
 
----
+The core findings replicate directionally. WCAG emerges at XL (1.5B) — a lower parameter count than Pythia's 6.9B, consistent with WCAG appearing more densely in WebText's Reddit-sourced content around web standards discussions. Screen reader never fully emerges in GPT-2; even at XL the model produces a partially correct response missing the critical "aloud" detail. ARIA fails at every scale tested in both model families. The declarative–evaluative gap and the pattern of sparse accessibility terms failing at all scales are consistent across architectures.
 
 ### Experiment 2: Evaluative Knowledge
 
@@ -69,11 +68,9 @@ The only evaluative success is the "Click here" prompt, which succeeds at 2.8B a
 
 The `<div>` onclick responses show a trajectory worth noting. Responses become more specific with scale — from loops at 160M to "not a form control" at 6.9B — without arriving at the correct explanation (keyboard inaccessibility, missing role and tabindex). The 6.9B answer is the closest, pointing toward interactivity expectations, but it does not identify the actual problem. This pattern reflects a broader limitation: models complete code structurally before reasoning semantically. Syntactic plausibility and semantic correctness are separable capabilities, and scale closes the gap only partially.
 
-#### Replication: GPT-2
+**Replication: GPT-2**
 
 The same five code prompts were run across all GPT-2 sizes. The declarative–evaluative gap replicates fully. No GPT-2 model identified missing alt text at any scale. "Click here" emerged as a partial success at large (838M) — earlier by parameter count than Pythia's 2.8B — but regressed at XL, consistent with the instability observed near emergence thresholds in both model families. The evaluative gap does not close at any scale tested in either architecture.
-
----
 
 ### Experiment 3: Recognition vs. Generation
 
@@ -89,13 +86,13 @@ Perplexity measures how expected a sequence is to the model. Lower perplexity me
 | 2.8B | Correct 4.0x | Correct 1.9x | Wrong 1.1x |
 | 6.9B | Correct 3.0x | Correct 3.1x | Wrong 1.8x |
 
-![Perplexity preference ratio across Pythia model sizes for screen reader, alt text, and skip link. Values above 1.0 indicate the model finds the correct definition more natural. Screen reader and alt text flip to correct-preferring between 410M and 1B; skip link never flips.](paper/figures/fig-pythia-perplexity-flip.png)
+![Correct definition perplexity falls below wrong definition perplexity at the 1B threshold in Pythia, indicating the model finds the correct definition more expected before it can generate it.](paper/figures/pythia-perplexity.png){fig-alt="Line graph across five Pythia model sizes (160M to 6.9B). Navy line (correct definition) and light blue line (wrong definition) begin close together at 160M and cross between 410M and 1B. After crossing, the correct definition line stays consistently lower. A shaded region marks the flip zone between 410M and 1B."}
 
 The preference for screen reader flips between 410M and 1B — recognition precedes generation by one model size. Alt text flips earlier, between 160M and 410M, suggesting it is more densely represented in training data. Skip link never flips; the model finds the incorrect definition more natural at every scale, consistent with the behavioral instability observed in Experiment 1.
 
 The recognition-before-generation pattern holds for two of three compounds tested. Skip link remains the exception across both perplexity and declarative experiments, indicating that some concepts may achieve surface-level generation without the underlying representational grounding that perplexity preference reflects.
 
-#### Replication: GPT-2
+**Replication: GPT-2**
 
 | Model | Screen Reader | Alt Text | Skip Link |
 |-------|--------------|----------|-----------|
@@ -104,11 +101,9 @@ The recognition-before-generation pattern holds for two of three compounds teste
 | Large (838M) | Correct 2.0x | Correct 1.6x | Wrong 2.5x |
 | XL (1.5B) | Correct 2.6x | Correct 2.1x | Wrong 1.8x |
 
-![Perplexity preference ratio across GPT-2 model sizes for screen reader. Values above 1.0 indicate the model finds the correct definition more natural. The preference flips between medium (406M) and large (838M), consistent with Pythia's 410M to 1B transition.](paper/figures/fig-gpt2-perplexity-flip.png)
+![GPT-2 shows a less clean crossing than Pythia — the flip zone spans Medium through XL, possibly reflecting differences in how preference emerges across architectures and training regimes.](paper/figures/gpt2-perplexity.png){fig-alt="Line graph across four GPT-2 model sizes (Small 117M to XL 1.5B). Navy line (correct definition) and light blue line (wrong definition) track closely through Medium and Large before diverging at XL. The crossing is ambiguous through the middle range. A wider shaded flip zone spans Medium through XL."}
 
 The screen reader preference flips between medium (406M) and large (838M) in GPT-2 — a remarkably similar parameter range to the Pythia flip between 410M and 1B, despite different architectures and training corpora. Alt text is correct-preferring from small in GPT-2, earlier than in Pythia, consistent with its denser representation in web-focused training data. Skip link never flips in either model family. The recognition-before-generation pattern for screen reader replicates across architectures.
-
----
 
 ### Experiment 4: Mechanistic Analysis of Compound Term Binding
 
@@ -128,7 +123,7 @@ For each model, attention weights from "reader" to "screen" were extracted acros
 
 Note: 1B's architectural difference (8 heads vs 12) affects raw head counts; see Methodology.
 
-![Binding persistence by model scale. Last layer containing a head with attention weight ≥ 0.5, Pythia suite, screen reader. Below the 2.8B threshold, strong binding drops off by layer 6–11. At 2.8B and 6.9B, it persists to layers 29–30.](paper/figures/fig-binding-persistence.png)
+![Strong binding heads persist to the final network layers only above the 2.8B emergence threshold, suggesting late-layer sustained binding is a mechanistic correlate of behavioral emergence.](paper/figures/binding-persistence.png){fig-alt="Bar chart with five bars for Pythia model sizes 160M through 6.9B. Light blue bars for 160M, 410M, and 1B show last strong binding layer at 11, 9, and 6 respectively. Navy bars for 2.8B and 6.9B jump to layers 29 and 30. A dashed vertical line between 1B and 2.8B marks the emergence threshold."}
 
 Several patterns emerge from this data.
 
@@ -142,7 +137,7 @@ Several patterns emerge from this data.
 
 All six models show strong binding in layers 0-3, including 160M which cannot produce a correct definition. Whether early-layer binding at small scales reflects genuine compound representation or proximity effects cannot be determined from attention weights alone and is noted as a limitation.
 
-#### Control Experiment: Ruling Out Proximity Effects
+**Control Experiment: Ruling Out Proximity Effects**
 
 To test whether the binding signal reflects compound concept encoding rather than simple token adjacency, attention weights were measured between non-compound token pairs at 2.8B. Two conditions were tested: adjacent function words ("and then") and an adjacent modifier-noun pair without disambiguation ("cold water"). Both conditions produced strong early-layer binding, consistent with the known behavior of previous-token heads (Olsson et al., 2022) — a class of induction circuit components that attend systematically to the immediately preceding position regardless of content.
 
@@ -158,7 +153,7 @@ Having ruled out proximity effects, attention binding was measured for two addit
 | alt text | 211 | 49 | 0.9856 |
 | skip link | 158 | 32 | 0.9816 |
 
-![Binding head counts for screen reader, alt text, and skip link at Pythia 2.8B. All three compounds show strong binding across many heads with deep-network persistence.](paper/figures/fig4-compound-comparison.png)
+![Binding generalizes across all three accessibility compounds at 2.8B, with alt text and skip link activating more heads than screen reader but all three showing strong head counts above threshold.](paper/figures/compound-comparison.png){fig-alt="Grouped bar chart with three concept pairs: screen reader, alt text, and skip link. Each group has two bars — light blue for all heads above 0.1 (101, 200, 208) and navy for strong heads above 0.5 (25, 40, 40). Alt text and skip link show substantially more binding heads than screen reader in both categories."}
 
 All three compounds show the same pattern of early-layer concentration with deep-network persistence at 2.8B, with top binding scores above 0.98 in each case.
 
@@ -166,7 +161,7 @@ This rules out a compound-specific explanation. The binding pattern is not an ar
 
 The binding pattern strengthens the case for a general mechanistic threshold at this scale.
 
-#### Replication: GPT-2
+**Replication: GPT-2**
 
 Attention binding was measured across all four GPT-2 model sizes for screen reader, with additional compounds (alt text, skip link) analyzed at XL.
 

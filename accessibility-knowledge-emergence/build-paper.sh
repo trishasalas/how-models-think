@@ -35,6 +35,7 @@ pandoc \
   "$SECTIONS/10-appendix.md" \
   -o "$OUTPUT" \
   --pdf-engine=lualatex \
+  --lua-filter=paper/filters/figure-alt.lua \
   --template=paper/template.tex \
   --wrap=none \
   --citeproc \

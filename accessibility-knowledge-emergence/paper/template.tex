@@ -261,12 +261,22 @@ $endif$
 \setlength{\tabcolsep}{8pt}
 \renewcommand{\arraystretch}{1.4}
 
-% Smaller figure captions
-\usepackage{caption}
-\captionsetup{font=small}
+% Smaller figure captions — caption package omitted to avoid Lbl/LBody tag
+% interference with PDF/UA-2; native \caption tagging produces flat <Caption>.
+%
+% Caption font: Atkinson Hyperlegible Mono, footnotesize, accessible gray.
+% #767676 is the lightest gray that meets WCAG AA (4.5:1) on white.
+% Label (#1) and text (#2) share the same treatment — mono carries the distinction.
+\newfontfamily\captionfont{Atkinson Hyperlegible Mono}
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  {\footnotesize\captionfont\textcolor[HTML]{767676}{#1.\space#2}\par}%
+  \vskip\belowcaptionskip}
+\makeatother
 
 % Reduce code block font size so long lines fit within the page margins.
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small}
 $if(tables)$
 \usepackage{longtable,booktabs}
 \usepackage{array}[=2016-10-06]
@@ -296,7 +306,8 @@ $else$
 \makesavenoteenv{longtable}
 $endif$
 $endif$
-$if(graphics)$
+% graphicx loaded unconditionally — Lua filter converts images to RawInline
+% so Pandoc never sets the graphics variable, but \includegraphics is still used.
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -313,7 +324,6 @@ $if(graphics)$
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-$endif$
 $if(svg)$
 \usepackage{svg}
 $endif$
@@ -504,20 +514,33 @@ $if(logo)$
 $endif$
 $endif$
 
-% Title block: title centered between rules; author/affiliation/date justified.
+% H1 wrapper — defined inside \ExplSyntaxOn so _ and : tokenise as letters,
+% preventing amsmath's \tag from stealing the command name at tokenisation time.
+\ExplSyntaxOn
+\newcommand{\TagH}[1]{%
+  \tag_struct_begin:n{tag=H1}%
+  \tag_mc_begin:n{}%
+  #1%
+  \tag_mc_end:%
+  \tag_struct_end:%
+}
+\ExplSyntaxOff
+
+% Title block: title as PDF/UA-2 H1; author/affiliation/date justified.
+% Decorative rules removed — they would need artifact tagging and add no content value.
 \makeatletter
 \renewcommand{\maketitle}{%
-  \vspace*{-1.5em}%
+  \vspace*{1.5em}%
   \begin{center}%
-    \noindent\rule{\linewidth}{0.6pt}\par\vspace{0.15em}%
-    {\Large\bfseries\@title\par}\vspace{0.15em}%
-    \noindent\rule{\linewidth}{0.6pt}%
-  \end{center}%
-  \vspace{0.6em}%
-  {\small\@author\hfill%
-$if(affiliation)$  $affiliation$\hfill%
+    \TagH{{\Large\bfseries\@title}}\par
+  \vspace{0.25em}%
+  {\small\itshape\@author\par%
+  \vspace{-0.3em}%
+$if(affiliation)$  $affiliation$\par%
+\vspace{-0.3em}%
 $endif$  \@date\par}%
-  \vspace{1.5em}%
+\end{center}%
+  \vspace{1em}%
 }
 \makeatother
 \begin{document}
