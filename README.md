@@ -45,6 +45,12 @@ how-models-think/
 
 ---
 
+## License
+
+This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). You are free to share and adapt with attribution.
+
+---
+
 ## Note on repo history
 
 *February 2026: Restructured as multi-paper series. Shared `src/` library extracted from notebook code.*

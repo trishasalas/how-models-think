@@ -86,7 +86,7 @@ Perplexity measures how expected a sequence is to the model. Lower perplexity me
 | 2.8B | Correct 4.0x | Correct 1.9x | Wrong 1.1x |
 | 6.9B | Correct 3.0x | Correct 3.1x | Wrong 1.8x |
 
-![Correct definition perplexity falls below wrong definition perplexity at the 1B threshold in Pythia, indicating the model finds the correct definition more expected before it can generate it.](paper/figures/pythia-perplexity.png){fig-alt="Line graph across five Pythia model sizes (160M to 6.9B). Navy line (correct definition) and light blue line (wrong definition) begin close together at 160M and cross between 410M and 1B. After crossing, the correct definition line stays consistently lower. A shaded region marks the flip zone between 410M and 1B."}
+![Correct definition perplexity falls below wrong definition perplexity at the 1B threshold in Pythia, indicating the model finds the correct definition more expected before it can generate it.](./figures/pythia-perplexity.png)
 
 The preference for screen reader flips between 410M and 1B — recognition precedes generation by one model size. Alt text flips earlier, between 160M and 410M, suggesting it is more densely represented in training data. Skip link never flips; the model finds the incorrect definition more natural at every scale, consistent with the behavioral instability observed in Experiment 1.
 
@@ -101,7 +101,7 @@ The recognition-before-generation pattern holds for two of three compounds teste
 | Large (838M) | Correct 2.0x | Correct 1.6x | Wrong 2.5x |
 | XL (1.5B) | Correct 2.6x | Correct 2.1x | Wrong 1.8x |
 
-![GPT-2 shows a less clean crossing than Pythia — the flip zone spans Medium through XL, possibly reflecting differences in how preference emerges across architectures and training regimes.](paper/figures/gpt2-perplexity.png){fig-alt="Line graph across four GPT-2 model sizes (Small 117M to XL 1.5B). Navy line (correct definition) and light blue line (wrong definition) track closely through Medium and Large before diverging at XL. The crossing is ambiguous through the middle range. A wider shaded flip zone spans Medium through XL."}
+![GPT-2 shows a less clean crossing than Pythia — the flip zone spans Medium through XL, possibly reflecting differences in how preference emerges across architectures and training regimes.](./figures/gpt2-perplexity.png)
 
 The screen reader preference flips between medium (406M) and large (838M) in GPT-2 — a remarkably similar parameter range to the Pythia flip between 410M and 1B, despite different architectures and training corpora. Alt text is correct-preferring from small in GPT-2, earlier than in Pythia, consistent with its denser representation in web-focused training data. Skip link never flips in either model family. The recognition-before-generation pattern for screen reader replicates across architectures.
 
@@ -123,7 +123,7 @@ For each model, attention weights from "reader" to "screen" were extracted acros
 
 Note: 1B's architectural difference (8 heads vs 12) affects raw head counts; see Methodology.
 
-![Strong binding heads persist to the final network layers only above the 2.8B emergence threshold, suggesting late-layer sustained binding is a mechanistic correlate of behavioral emergence.](paper/figures/binding-persistence.png){fig-alt="Bar chart with five bars for Pythia model sizes 160M through 6.9B. Light blue bars for 160M, 410M, and 1B show last strong binding layer at 11, 9, and 6 respectively. Navy bars for 2.8B and 6.9B jump to layers 29 and 30. A dashed vertical line between 1B and 2.8B marks the emergence threshold."}
+![Strong binding heads persist to the final network layers only above the 2.8B emergence threshold, suggesting late-layer sustained binding is a mechanistic correlate of behavioral emergence.](./figures/binding-persistence.png)
 
 Several patterns emerge from this data.
 
@@ -153,7 +153,7 @@ Having ruled out proximity effects, attention binding was measured for two addit
 | alt text | 211 | 49 | 0.9856 |
 | skip link | 158 | 32 | 0.9816 |
 
-![Binding generalizes across all three accessibility compounds at 2.8B, with alt text and skip link activating more heads than screen reader but all three showing strong head counts above threshold.](paper/figures/compound-comparison.png){fig-alt="Grouped bar chart with three concept pairs: screen reader, alt text, and skip link. Each group has two bars — light blue for all heads above 0.1 (101, 200, 208) and navy for strong heads above 0.5 (25, 40, 40). Alt text and skip link show substantially more binding heads than screen reader in both categories."}
+![Binding generalizes across all three accessibility compounds at 2.8B, with alt text and skip link activating more heads than screen reader but all three showing strong head counts above threshold.](./figures/compound-comparison.png)
 
 All three compounds show the same pattern of early-layer concentration with deep-network persistence at 2.8B, with top binding scores above 0.98 in each case.
 
