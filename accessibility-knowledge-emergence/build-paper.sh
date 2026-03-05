@@ -18,7 +18,7 @@
 
 set -e
 
-OUTPUT="accessibility-knowledge-emergence.pdf"
+OUTPUT="accessibility-knowledge-emergence-v2.pdf"
 SECTIONS="paper/sections"
 
 pandoc \
