@@ -54,13 +54,13 @@ Models were tested on five code prompts requiring identification of accessibilit
 
 *Correct = identifies the accessibility violation accurately; Partial = identifies some issue but not the core violation; Incorrect = wrong, off-topic, or loops*
 
-| Prompt                                      | 160M | 410M | 2.8B | 6.9B |
-| ------------------------------------------- | ---- | ---- | ---- | ---- |
-| `<img src='photo.jpg'>` missing what        | $\times$    | $\times$    | $\times$    | $\times$    |
-| `<div>` with onclick not accessible because | $\times$    | $\times$    | $\times$    | $\times$    |
-| Problem with `<a href='#'></a>`             | $\times$    | $\approx$    | $\times$    | $\times$    |
-| `<input type='text'>` needs a              | $\times$    | $\times$    | $\times$    | $\times$    |
-| 'Click here' button is bad because          | $\times$    | $\times$    | $\checkmark$    | $\checkmark$    |
+| Prompt                                      | 160M     | 410M      | 1B       | 2.8B         | 6.9B         |
+| ------------------------------------------- | -------- | --------- | -------- | ------------ | ------------ |
+| `<img src='photo.jpg'>` missing what        | $\times$ | $\times$  | $\times$ | $\times$     | $\times$     |
+| `<div>` with onclick not accessible because | $\times$ | $\times$  | $\times$ | $\times$     | $\times$     |
+| Problem with `<a href='#'></a>`             | $\times$ | $\approx$ | $\times$ | $\times$     | $\times$     |
+| `<input type='text'>` needs a               | $\times$ | $\times$  | $\times$ | $\times$     | $\times$     |
+| 'Click here' button is bad because          | $\times$ | $\times$  | $\times$ | $\checkmark$ | $\checkmark$ |
 
 There is a clear gap between declarative and evaluative knowledge. The 2.8B model correctly defines alt text but cannot identify that `<img src='photo.jpg'>` is missing one — it repeats the prompt and stalls at every scale tested. The question explicitly asks what is missing; no model answers "alt text."
 
@@ -86,7 +86,11 @@ Perplexity measures how expected a sequence is to the model. Lower perplexity me
 | 2.8B | Correct 4.0x | Correct 1.9x | Wrong 1.1x |
 | 6.9B | Correct 3.0x | Correct 3.1x | Wrong 1.8x |
 
-![Correct definition perplexity falls below wrong definition perplexity at the 1B threshold in Pythia, indicating the model finds the correct definition more expected before it can generate it.](./figures/pythia-perplexity.png)
+![Line graph showing perplexity scores on the y-axis (lower means more expected) against five Pythia model sizes on the x-axis: 160M, 410M, 1B, 2.8B, and 6.9B. Two lines represent correct and wrong WCAG definitions. At 160M and 410M, the wrong definition line sits below the correct definition line, indicating the model finds it more probable. A shaded region labeled "flip zone" spans 410M to 1B, where the lines cross. From 1B onward, the correct definition line drops below the wrong definition line, reaching its lowest point at 2.8B before both lines converge slightly at 6.9B.](./figures/pythia-perplexity.png)
+
+::: {.caption}
+Figure 2: Correct definition perplexity falls below wrong definition perplexity between 410M and 1B parameters in Pythia, indicating the model finds the correct definition more expected before it can generate it.
+:::
 
 The preference for screen reader flips between 410M and 1B — recognition precedes generation by one model size. Alt text flips earlier, between 160M and 410M, suggesting it is more densely represented in training data. Skip link never flips; the model finds the incorrect definition more natural at every scale, consistent with the behavioral instability observed in Experiment 1.
 
@@ -101,7 +105,11 @@ The recognition-before-generation pattern holds for two of three compounds teste
 | Large (838M) | Correct 2.0x | Correct 1.6x | Wrong 2.5x |
 | XL (1.5B) | Correct 2.6x | Correct 2.1x | Wrong 1.8x |
 
-![GPT-2 shows a less clean crossing than Pythia — the flip zone spans Medium through XL, possibly reflecting differences in how preference emerges across architectures and training regimes.](./figures/gpt2-perplexity.png)
+![Line graph showing perplexity scores on the y-axis (lower means more expected) against four GPT-2 model sizes on the x-axis: Small (117M), Medium (406M), Large (838M), and XL (1.5B). Two lines represent correct and wrong WCAG definitions. At Small, the correct definition line sits above the wrong definition line. The lines converge at Medium, then cross within a shaded flip zone spanning Medium to XL. At Large, the wrong definition line dips below the correct definition line. By XL, the correct definition line has dropped below the wrong definition line, completing the preference flip.](./figures/gpt2-perplexity.png)
+
+::: {.caption}
+Correct definition perplexity falls below wrong definition perplexity between 406M and 838M parameters in GPT-2, replicating the perplexity preference flip observed in Pythia at a comparable scale threshold.
+:::
 
 The screen reader preference flips between medium (406M) and large (838M) in GPT-2 — a remarkably similar parameter range to the Pythia flip between 410M and 1B, despite different architectures and training corpora. Alt text is correct-preferring from small in GPT-2, earlier than in Pythia, consistent with its denser representation in web-focused training data. Skip link never flips in either model family. The recognition-before-generation pattern for screen reader replicates across architectures.
 
@@ -123,7 +131,11 @@ For each model, attention weights from "reader" to "screen" were extracted acros
 
 Note: 1B's architectural difference (8 heads vs 12) affects raw head counts; see Methodology.
 
-![Strong binding heads persist to the final network layers only above the 2.8B emergence threshold, suggesting late-layer sustained binding is a mechanistic correlate of behavioral emergence.](./figures/binding-persistence.png)
+![Bar chart showing the last layer containing a strong binding head with attention score of 0.5 or greater, across five Pythia model sizes on the x-axis: 160M, 410M, 1B, 2.8B, and 6.9B. Bars for 160M, 410M, and 1B are light blue and show a declining trend: Layer 11 of 12, Layer 9 of 24, and Layer 6 of 16 respectively. A vertical dashed line labeled "emergence threshold" separates these from the remaining models. Bars for 2.8B and 6.9B are dark navy and show a sharp increase: Layer 29 of 32 and Layer 30 of 32 respectively.](./figures/binding-persistence.png)
+
+::: {.caption}
+The last layer containing a strong binding head (attention score ≥0.5) drops through 160M, 410M, and 1B before jumping sharply at 2.8B, coinciding with the emergence threshold. Models above the threshold show binding heads persisting into the final layers.
+:::
 
 Several patterns emerge from this data.
 
@@ -137,7 +149,7 @@ Several patterns emerge from this data.
 
 All six models show strong binding in layers 0-3, including 160M which cannot produce a correct definition. Whether early-layer binding at small scales reflects genuine compound representation or proximity effects cannot be determined from attention weights alone and is noted as a limitation.
 
-**Control Experiment: Ruling Out Proximity Effects**
+### Control Experiment: Ruling Out Proximity Effects
 
 To test whether the binding signal reflects compound concept encoding rather than simple token adjacency, attention weights were measured between non-compound token pairs at 2.8B. Two conditions were tested: adjacent function words ("and then") and an adjacent modifier-noun pair without disambiguation ("cold water"). Both conditions produced strong early-layer binding, consistent with the known behavior of previous-token heads (Olsson et al., 2022) — a class of induction circuit components that attend systematically to the immediately preceding position regardless of content.
 
@@ -153,9 +165,13 @@ Having ruled out proximity effects, attention binding was measured for two addit
 | alt text | 211 | 49 | 0.9856 |
 | skip link | 158 | 32 | 0.9816 |
 
-![Binding generalizes across all three accessibility compounds at 2.8B, with alt text and skip link activating more heads than screen reader but all three showing strong head counts above threshold.](./figures/compound-comparison.png)
-
 All three compounds show the same pattern of early-layer concentration with deep-network persistence at 2.8B, with top binding scores above 0.98 in each case.
+
+![Grouped bar chart showing attention head counts in Pythia 2.8B for three accessibility compounds on the x-axis: screen reader, alt text, and skip link. Each compound has two bars: light blue for all heads with attention score greater than 0.1, and dark navy for strong heads with attention score of 0.5 or greater. For screen reader: 101 all heads, 25 strong heads. For alt text: 200 all heads, 40 strong heads. For skip link: 208 all heads, 40 strong heads.](./figures/compound-comparison.png)
+
+::: {.caption}
+Attention head counts for three accessibility compounds in Pythia 2.8B, showing all heads (attention score >0.1) and strong heads (≥0.5). Screen reader activates fewer heads overall, while alt text and skip link show comparable strong head counts despite differences in total activation.
+:::
 
 This rules out a compound-specific explanation. The binding pattern is not an artifact of how "screen reader" tokenizes or how frequently it appears in training data. It is a general property of accessibility compound terms at the 2.8B emergence threshold. The models that can define these concepts correctly show robust, distributed binding across many heads and many layers. The models that cannot show weak binding that drops off early.
 
@@ -173,6 +189,8 @@ Attention binding was measured across all four GPT-2 model sizes for screen read
 | XL (1.5B) | 199 | 37 | 17 | 48 |
 
 The strong head count jump between medium and large (12 to 34) coincides with the perplexity flip observed in Experiment 3, replicating the Pythia pattern in a different architecture. The last strong layer advances from 10 to 15 at the same transition — consistent with deep-network persistence as a correlate of recognition-level emergence.
+
+\newpage
 
 At XL, binding was measured for all three compounds:
 

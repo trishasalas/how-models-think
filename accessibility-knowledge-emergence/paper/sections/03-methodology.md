@@ -10,7 +10,7 @@ To assess replicability across model families, all four experiments were additio
 
 ### Experiments
 
-**Experiment 1: Declarative Knowledge**
+#### Experiment 1: Declarative Knowledge
 
 Ten accessibility concept prompts (see Appendix A) were run against each model using greedy decoding (temperature=0, max_new_tokens=10):
 
@@ -21,11 +21,11 @@ output = model.generate(prompt, max_new_tokens=10, temperature=0)
 
 Prompts covered core accessibility terms (screen reader, alt text, skip link), foundational acronyms (WCAG, ARIA), and general accessibility concepts (focus indicator, keyboard navigation, color contrast, semantic HTML, captions). Responses were evaluated against known correct completions — definitions for concept prompts, purpose statements for functional prompts, and correct expansions for acronym prompts.
 
-**Experiment 2: Evaluative Knowledge**
+#### Experiment 2: Evaluative Knowledge
 
 Five code prompts (see Appendix A) were run against each model (temperature=0, max_new_tokens=20), asking models to identify accessibility violations in HTML snippets. Prompts covered missing alt attributes, non-semantic interactive elements, empty links, unlabeled inputs, and ambiguous link text. Responses were evaluated against correct accessibility explanations.
 
-**Experiment 3: Recognition vs. Generation**
+#### Experiment 3: Recognition vs. Generation
 
 Perplexity measures how expected a sequence is to the model, defined as:
 
@@ -35,7 +35,7 @@ $$
 
 Lower perplexity indicates the model finds the text more natural. Comparing perplexity for a correct and incorrect definition across model sizes reveals whether recognition precedes generation. (see Appendix A)
 
-
+\newpage
 
 ```python
 def get_perplexity(model, text):
@@ -47,7 +47,7 @@ def get_perplexity(model, text):
     return torch.exp(-token_log_probs.mean()).item()
 ```
 
-**Experiment 4: Attention Pattern Analysis**
+#### Experiment 4: Attention Pattern Analysis
 
 Attention weights were extracted across all layers and heads for the prompt "A screen reader is" using TransformerLens's activation cache:
 
@@ -86,4 +86,4 @@ This experiment was run for Pythia 2.8B and 6.9B. Additional binding pairs (alt 
 
 ### Reproducibility
 
-All experiments were run with temperature=0 for deterministic outputs on Google Colab with an A100 GPU. Greedy decoding was chosen for mechanistic work to ensure deterministic outputs; stochastic decoding may surface partial knowledge that greedy decoding suppresses, and is noted as a direction for future exploration. Full notebooks are available at https://github.com/trishasalas/how-models-think
+All experiments were run with temperature=0 for deterministic outputs on Google Colab with an A100 GPU. Greedy decoding was chosen for mechanistic work to ensure deterministic outputs; stochastic decoding may surface partial knowledge that greedy decoding suppresses and is noted as a direction for future exploration. Full notebooks are available at https://github.com/trishasalas/how-models-think

@@ -1,3 +1,5 @@
+\newpage
+
 ## Appendix
 
 ### A: Prompts
@@ -19,6 +21,8 @@ All declarative experiments used completion-style prompts. Models were given the
 | Semantic HTML helps |
 | Captions are used for |
 
+\newpage
+
 #### Evaluative Prompts
 
 Evaluative experiments used zero-shot code completion prompts.
@@ -31,6 +35,8 @@ Evaluative experiments used zero-shot code completion prompts.
 | `<input type='text'>` needs a |
 | A button that only says 'Click here' is bad because |
 
+\newpage
+
 #### Perplexity Pairs
 
 Each pair consists of a correct and incorrect definition. Perplexity was computed for each sentence independently. Values below 1.0 on the preference ratio indicate the model finds the wrong definition more natural.
@@ -41,7 +47,7 @@ Each pair consists of a correct and incorrect definition. Perplexity was compute
 | Alt text | The purpose of alt text is to provide a textual description of an image for people with visual disabilities. | The purpose of alt text is to make images load faster. |
 | Skip link | A skip link is a navigation aid that allows keyboard users to bypass repetitive content. | A skip link is a broken hyperlink that does not load. |
 
----
+\newpage
 
 ### B: Model Architectures
 

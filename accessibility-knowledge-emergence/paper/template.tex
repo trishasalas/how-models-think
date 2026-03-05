@@ -260,10 +260,17 @@ $endif$
 % Increase table cell padding
 \setlength{\tabcolsep}{8pt}
 \renewcommand{\arraystretch}{1.4}
+\widowpenalty=10000
+\clubpenalty=10000
 
 % Smaller figure captions
 \usepackage{caption}
 \captionsetup{font=small}
+
+% Caption font for manually styled .caption divs
+% Atkinson Hyperlegible Mono, footnotesize, #767676 (WCAG AA on white)
+\newfontfamily\figurecaptionfont[FontFace={m}{n}{*-Regular}]{Atkinson Hyperlegible Italic}
+
 
 % Reduce code block font size so long lines fit within the page margins.
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
@@ -509,15 +516,16 @@ $endif$
 \renewcommand{\maketitle}{%
   \vspace*{-1.5em}%
   \begin{center}%
-    \noindent\rule{\linewidth}{0.6pt}\par\vspace{0.15em}%
-    {\Large\bfseries\@title\par}\vspace{0.15em}%
-    \noindent\rule{\linewidth}{0.6pt}%
+    % This forces the H1 tag in the PDF/HTML structure
+    {\section*{\centering\@title}} 
   \end{center}%
   \vspace{0.6em}%
-  {\small\@author\hfill%
-$if(affiliation)$  $affiliation$\hfill%
-$endif$  \@date\par}%
-  \vspace{1.5em}%
+\begin{center}%
+  \small\itshape\@author\\
+$if(affiliation)$  $affiliation$\\
+$endif$  \@date\par%
+\end{center}%
+  \vspace{1em}%
 }
 \makeatother
 \begin{document}

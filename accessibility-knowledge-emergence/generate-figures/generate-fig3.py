@@ -24,8 +24,8 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-FIGURES_DIR = Path("paper/figures")
-RESULTS_DIR = Path("results")
+FIGURES_DIR = Path("../figures")
+RESULTS_DIR = Path("../results")
 
 # ── Palette (matches fig1) ─────────────────────────────────────────────────────
 NAVY       = "#08306b"
@@ -109,7 +109,7 @@ def make_figure():
     ax.set_ylim(0, max(max(correct), max(wrong)) * 1.18)
     ax.set_xlim(-0.3, len(MODELS) - 0.7)
 
-    ax.legend(fontsize=11, frameon=False, loc="upper right")
+    ax.legend(fontsize=11, frameon=False, loc="upper right", bbox_to_anchor=(0.90, 0.98))
 
     out = FIGURES_DIR / "gpt2-perplexity.png"
     fig.savefig(out, dpi=150, bbox_inches="tight")
