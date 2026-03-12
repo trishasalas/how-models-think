@@ -3,6 +3,52 @@ Research and figure decisions with rationale.
 
 ---
 
+## Elicitation Robustness Experiment
+
+### 2026-03-10 — Elicitation control prompts: design, execution, results
+
+**Decision:** Added elicitation robustness check using 3 new accessibility concepts (closed captions, color contrast, page title) across 5 template types (cloze, direct_question, instruction, evaluative, scenario) with bicycle as non-accessibility control. Run on Pythia 2.8B, Pythia 1B, GPT-2-large.
+
+**Rationale:** Pre-empts reviewer critique ("did you ask it right?"). If the declarative-evaluative gap holds across meaningfully different elicitation strategies, it rules out prompting artifacts as a confounder. Different concepts than original paper (screen reader, alt text, skip link) so this also demonstrates the gap isn't concept-specific.
+
+**Why bicycle control:** One non-accessibility prompt per template type, same structure, neutral domain the model definitely knows. If the model can do evaluative reasoning on bicycles but not accessibility using the same template, the failure is domain knowledge depth, not template format.
+
+**Key Results:**
+
+Pythia 2.8B:
+- Cloze/direct: ✅ Strong declarative knowledge across all concepts
+- Instruction: ❌ Breaks into forum-post roleplay ("I'm a web developer and I'm trying to explain...")
+- Evaluative (accessibility): ⚠️ Wrong reasons ("video not in English", "not in the same color range")
+- Evaluative (bicycle): ✅ Correct ("not designed to stop")
+- Scenario: ⚠️ Misses negative premises ("no title" → describes normal browsing)
+
+Pythia 1B (predicted dead zone — confirmed):
+- Evaluative (accessibility): ❌ Circular ("because of the low color contrast", "because the title is not available")
+- Evaluative (bicycle): ❌ Also circular ("not safe because it is not safe to ride")
+- Scenario (closed captions): ❌ Contradicts premise — says deaf user "can hear the audio"
+- 1B failure is NOT domain-specific — can't do evaluative reasoning on anything
+
+GPT-2-large (surprise finding):
+- Evaluative: ❌ Nonsensical across all concepts including bicycle ("not safe because it is not a vehicle")
+- Scenario: ✅ Correct for accessibility ("can't understand what is being said", "unable to distinguish between text and background")
+- Likely explanation: WebText training data rich in narrative accessibility content. Scenario template pattern-matches on blog/explainer structure, not genuine evaluative reasoning
+- IMPORTANT: This is a training data artifact, not evidence of understanding. Note as limitation in paper.
+
+**Interpretation:** The declarative-evaluative gap holds across new concepts, new template types, and two architectures. Bicycle control isolates domain knowledge as the variable. 1B dead zone confirmed with convergent evidence (linear probe, fine-tuning, now elicitation all underwhelming). GPT-2-large scenario results require discussion of training data confound.
+
+**Files:**
+- `data/elicitation_control_prompts.jsonl` — 20 prompts (15 accessibility + 5 bicycle control)
+- `notebooks/elicitation-robustness.ipynb` — runner notebook
+- `results/elicitation_robustness_raw.csv` — raw completions
+
+**Next steps (target: Mon-Tue 2026-03-16/17):**
+- Add methods paragraph on elicitation robustness design
+- Add results table to paper
+- Add discussion of GPT-2-large training data artifact
+- Update paper revision on Authorea/TechRxiv
+
+---
+
 ## Figure Decisions
 
 ### 2026-03-04 — PDF/UA-2 Figure Tagging & Caption Styling Session

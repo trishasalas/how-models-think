@@ -1,0 +1,923 @@
+model,concept,template_type,prompt_id,prompt,completion,full_output
+pythia-2.8b,closed captions,cloze,cloze_cc_001,Closed captions display," text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed capt","Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed captions display text in a box at the bottom of the screen.
+
+Closed capt"
+pythia-2.8b,color contrast,cloze,cloze_contrast_001,Color contrast is important because," it is a key factor in determining the quality of a printed image. In a color image, the colors of the image are represented by a combination of three primary colors, red, green, and blue. The colors of the image are represented by the amount of each color in the image. The colors of the image are represented by the amount of each color in the image. The colors of the image are represented by the amount of each color in the image. The colors of the image are represented by","Color contrast is important because it is a key factor in determining the quality of a printed image. In a color image, the colors of the image are represented by a combination of three primary colors, red, green, and blue. The colors of the image are represented by the amount of each color in the image. The colors of the image are represented by the amount of each color in the image. The colors of the image are represented by the amount of each color in the image. The colors of the image are represented by"
+pythia-2.8b,page title,cloze,cloze_title_001,A page title describes," the content of the page.
+
+A page title is a short, descriptive phrase that is displayed in the browser's title bar.
+
+A page title is used to identify the page in the browser's address bar.
+
+A page title is also used to identify the page in the browser's bookmarks bar.
+
+A page title is also used to identify the page in the browser's search results.
+
+A page title is also used to identify the page in the browser's","A page title describes the content of the page.
+
+A page title is a short, descriptive phrase that is displayed in the browser's title bar.
+
+A page title is used to identify the page in the browser's address bar.
+
+A page title is also used to identify the page in the browser's bookmarks bar.
+
+A page title is also used to identify the page in the browser's search results.
+
+A page title is also used to identify the page in the browser's"
+pythia-2.8b,closed captions,direct_question,direct_cc_001,What are closed captions?,"
+
+Closed captions are subtitles that are displayed on the screen when the video is played. They are usually displayed in the bottom right corner of the screen.
+
+Closed captions are not available on all videos.
+
+Closed captions are available on the following videos:
+
+What are subtitles?
+
+Subtitles are the text that is displayed on the screen when the video is played. Subtitles are usually displayed in the bottom right corner of the screen","What are closed captions?
+
+Closed captions are subtitles that are displayed on the screen when the video is played. They are usually displayed in the bottom right corner of the screen.
+
+Closed captions are not available on all videos.
+
+Closed captions are available on the following videos:
+
+What are subtitles?
+
+Subtitles are the text that is displayed on the screen when the video is played. Subtitles are usually displayed in the bottom right corner of the screen"
+pythia-2.8b,color contrast,direct_question,direct_contrast_001,What is color contrast?,"
+
+Color contrast is the difference between the color of the background and the color of the foreground.
+
+The color of the background is the color of the background of the image.
+
+The color of the foreground is the color of the foreground of the image.
+
+The color contrast of an image is the difference between the color of the background and the color of the foreground.
+
+The color contrast of an image is the difference between the color of the background and the color of the","What is color contrast?
+
+Color contrast is the difference between the color of the background and the color of the foreground.
+
+The color of the background is the color of the background of the image.
+
+The color of the foreground is the color of the foreground of the image.
+
+The color contrast of an image is the difference between the color of the background and the color of the foreground.
+
+The color contrast of an image is the difference between the color of the background and the color of the"
+pythia-2.8b,page title,direct_question,direct_title_001,What is a page title?,"
+
+A page title is the text that appears in the browser's title bar. It is the first thing that a user sees when they open a web page.
+
+The page title is usually the same as the page's URL. For example, if the page is http://www.example.com/index.html, the page title is ""Index"".
+
+The page title is usually the same as the page's URL. For example, if the page is http://www.","What is a page title?
+
+A page title is the text that appears in the browser's title bar. It is the first thing that a user sees when they open a web page.
+
+The page title is usually the same as the page's URL. For example, if the page is http://www.example.com/index.html, the page title is ""Index"".
+
+The page title is usually the same as the page's URL. For example, if the page is http://www."
+pythia-2.8b,closed captions,instruction,instr_cc_001,Explain closed captions to a web developer.,"
+
+I'm working on a project that requires a lot of closed captions. I've been told that I need to explain to the web developer how to use them. I've been told that I need to explain to the web developer how to use them.
+
+I've been told that I need to explain to the web developer how to use them.
+
+I've been told that I need to explain to the web developer how to use them.
+
+I've been told that","Explain closed captions to a web developer.
+
+I'm working on a project that requires a lot of closed captions. I've been told that I need to explain to the web developer how to use them. I've been told that I need to explain to the web developer how to use them.
+
+I've been told that I need to explain to the web developer how to use them.
+
+I've been told that I need to explain to the web developer how to use them.
+
+I've been told that"
+pythia-2.8b,color contrast,instruction,instr_contrast_001,Explain color contrast to a web developer.,"
+
+I'm a web developer and I'm trying to explain color contrast to a web developer. I've been trying to explain it to him for a while now and I'm not sure if I'm doing it right.
+
+I'm trying to explain color contrast to a web developer. I've been trying to explain it to him for a while now and I'm not sure if I'm doing it right.
+
+I'm trying to explain color contrast to a web developer. I've","Explain color contrast to a web developer.
+
+I'm a web developer and I'm trying to explain color contrast to a web developer. I've been trying to explain it to him for a while now and I'm not sure if I'm doing it right.
+
+I'm trying to explain color contrast to a web developer. I've been trying to explain it to him for a while now and I'm not sure if I'm doing it right.
+
+I'm trying to explain color contrast to a web developer. I've"
+pythia-2.8b,page title,instruction,instr_title_001,Explain page titles to a web developer.,"
+
+I'm a web developer and I'm trying to explain to a client why their site has a page title of ""Home"" and not ""About Us"". I've been told that the page title is the title of the page, but I don't understand why the page title is not the title of the page.
+
+I've been told that the page title is the title of the page, but I don't understand why the page title is not the title of the page.
+","Explain page titles to a web developer.
+
+I'm a web developer and I'm trying to explain to a client why their site has a page title of ""Home"" and not ""About Us"". I've been told that the page title is the title of the page, but I don't understand why the page title is not the title of the page.
+
+I've been told that the page title is the title of the page, but I don't understand why the page title is not the title of the page.
+"
+pythia-2.8b,closed captions,evaluative,eval_cc_001,A video without closed captions is not accessible because," the video is not in English.
+
+Please contact us if you need a video in a different language.
+
+A video with closed captions is not accessible because the video is not in English.
+
+Please contact us if you need a video in a different language.
+
+A video without closed captions is not accessible because the video is not in English.
+
+Please contact us if you need a video in a different language.
+
+A video without closed captions is not","A video without closed captions is not accessible because the video is not in English.
+
+Please contact us if you need a video in a different language.
+
+A video with closed captions is not accessible because the video is not in English.
+
+Please contact us if you need a video in a different language.
+
+A video without closed captions is not accessible because the video is not in English.
+
+Please contact us if you need a video in a different language.
+
+A video without closed captions is not"
+pythia-2.8b,color contrast,evaluative,eval_contrast_001,Text with low color contrast is not accessible because," it is not in the same color range as the background.
+
+Text with high color contrast is not accessible because it is not in the same color range as the background.
+
+Text with low color contrast is not accessible because it is not in the same color range as the background.
+
+Text with high color contrast is not accessible because it is not in the same color range as the background.
+
+Text with low color contrast is not accessible because it is not in the same color range","Text with low color contrast is not accessible because it is not in the same color range as the background.
+
+Text with high color contrast is not accessible because it is not in the same color range as the background.
+
+Text with low color contrast is not accessible because it is not in the same color range as the background.
+
+Text with high color contrast is not accessible because it is not in the same color range as the background.
+
+Text with low color contrast is not accessible because it is not in the same color range"
+pythia-2.8b,page title,evaluative,eval_title_001,A web page without a title is not accessible because," the user cannot determine what the page is about.
+
+A web page without a title is not accessible because the user cannot determine what the page is about.
+
+A web page without a title is not accessible because the user cannot determine what the page is about.
+
+A web page without a title is not accessible because the user cannot determine what the page is about.
+
+A web page without a title is not accessible because the user cannot determine what the page is about.
+
+","A web page without a title is not accessible because the user cannot determine what the page is about.
+
+A web page without a title is not accessible because the user cannot determine what the page is about.
+
+A web page without a title is not accessible because the user cannot determine what the page is about.
+
+A web page without a title is not accessible because the user cannot determine what the page is about.
+
+A web page without a title is not accessible because the user cannot determine what the page is about.
+
+"
+pythia-2.8b,closed captions,scenario,scenario_cc_001,"A deaf user is watching a video on a website. Without closed captions, the user", cannot understand the video. The user can use a screen reader to read the video. The screen reader reads the video by using the audio of the video. The screen reader can also read the video by using the text of the video. The screen reader can also read the video by using the text of the video and the audio of the video. The screen reader can also read the video by using the text of the video and the audio of the video and the video's metadata. The screen reader can,"A deaf user is watching a video on a website. Without closed captions, the user cannot understand the video. The user can use a screen reader to read the video. The screen reader reads the video by using the audio of the video. The screen reader can also read the video by using the text of the video. The screen reader can also read the video by using the text of the video and the audio of the video. The screen reader can also read the video by using the text of the video and the audio of the video and the video's metadata. The screen reader can"
+pythia-2.8b,color contrast,scenario,scenario_contrast_001,A low vision user visits a website with poor color contrast. The user," is able to see the text on the website, but is unable to read the text. The user is able to see the background of the website, but is unable to read the background. The user is able to see the background of the website, but is unable to read the background. The user is able to see the background of the website, but is unable to read the background. The user is able to see the background of the website, but is unable to read the background. The user","A low vision user visits a website with poor color contrast. The user is able to see the text on the website, but is unable to read the text. The user is able to see the background of the website, but is unable to read the background. The user is able to see the background of the website, but is unable to read the background. The user is able to see the background of the website, but is unable to read the background. The user is able to see the background of the website, but is unable to read the background. The user"
+pythia-2.8b,page title,scenario,scenario_title_001,A screen reader user navigates to a web page with no title. The user," is then presented with a title bar and a list of links. The user then selects a link and is presented with a page with no title. The user then navigates to a web page with a title.
+
+A screen reader user navigates to a web page with no title. The user is then presented with a title bar and a list of links. The user then selects a link and is presented with a page with no title. The user then navigates to a web page with a","A screen reader user navigates to a web page with no title. The user is then presented with a title bar and a list of links. The user then selects a link and is presented with a page with no title. The user then navigates to a web page with a title.
+
+A screen reader user navigates to a web page with no title. The user is then presented with a title bar and a list of links. The user then selects a link and is presented with a page with no title. The user then navigates to a web page with a"
+pythia-2.8b,bicycle,cloze,cloze_control_001,A bicycle is used for," transportation, recreation, and sport. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is","A bicycle is used for transportation, recreation, and sport. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is a vehicle that is powered by a rider's muscular force. The bicycle is"
+pythia-2.8b,bicycle,direct_question,direct_control_001,What is a bicycle?,"
+
+A bicycle is a vehicle that uses a wheel to move. It is a type of vehicle that is powered by the movement of the rider's legs. Bicycles are used for transportation, recreation, and sport.
+
+Bicycles are powered by the rider's legs. The rider pedals the bicycle with one or both feet. The rider's feet are connected to the bicycle by a pedal assembly. The rider's legs are connected to the bicycle by a chain or a deraille","What is a bicycle?
+
+A bicycle is a vehicle that uses a wheel to move. It is a type of vehicle that is powered by the movement of the rider's legs. Bicycles are used for transportation, recreation, and sport.
+
+Bicycles are powered by the rider's legs. The rider pedals the bicycle with one or both feet. The rider's feet are connected to the bicycle by a pedal assembly. The rider's legs are connected to the bicycle by a chain or a deraille"
+pythia-2.8b,bicycle,instruction,instr_control_001,Explain bicycles to a web developer.,"
+
+I’m a web developer and I’m looking to buy a bicycle. I’ve been looking at the different models and I’m not sure which one to get. I’m not sure if I should get a road bike or a mountain bike. I’m not sure if I should get a road bike or a hybrid. I’m not sure if I should get a road bike or a hybrid. I’m not sure if I should get a road bike or","Explain bicycles to a web developer.
+
+I’m a web developer and I’m looking to buy a bicycle. I’ve been looking at the different models and I’m not sure which one to get. I’m not sure if I should get a road bike or a mountain bike. I’m not sure if I should get a road bike or a hybrid. I’m not sure if I should get a road bike or a hybrid. I’m not sure if I should get a road bike or"
+pythia-2.8b,bicycle,evaluative,eval_control_001,A bicycle without brakes is not safe because," it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not","A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not safe because it is not designed to stop.
+
+A bicycle without brakes is not"
+pythia-2.8b,bicycle,scenario,scenario_control_001,"A child is riding a bicycle on a busy street. Without a helmet, the child"," is at risk of serious injury.
+
+The child is wearing a helmet, but the helmet is not properly fitted.
+
+The child is wearing a helmet that is too small.
+
+The child is wearing a helmet that is too large.
+
+The child is wearing a helmet that is too loose.
+
+The child is wearing a helmet that is too tight.
+
+The child is wearing a helmet that is too loose.
+
+The child is wearing a helmet that is too","A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of serious injury.
+
+The child is wearing a helmet, but the helmet is not properly fitted.
+
+The child is wearing a helmet that is too small.
+
+The child is wearing a helmet that is too large.
+
+The child is wearing a helmet that is too loose.
+
+The child is wearing a helmet that is too tight.
+
+The child is wearing a helmet that is too loose.
+
+The child is wearing a helmet that is too"
+pythia-1b,closed captions,cloze,cloze_cc_001,Closed captions display," on a computer screen are typically used to provide a visual representation of a video sequence. The closed captions are typically displayed in a fixed size and are typically displayed in a fixed location on the screen. The closed captions are typically displayed in a fixed size and are typically displayed in a fixed location on the screen.
+Closed captions are typically displayed in a fixed size and are typically displayed in a fixed location on the screen. The closed captions are typically displayed in a fixed size and are typically","Closed captions display on a computer screen are typically used to provide a visual representation of a video sequence. The closed captions are typically displayed in a fixed size and are typically displayed in a fixed location on the screen. The closed captions are typically displayed in a fixed size and are typically displayed in a fixed location on the screen.
+Closed captions are typically displayed in a fixed size and are typically displayed in a fixed location on the screen. The closed captions are typically displayed in a fixed size and are typically"
+pythia-1b,color contrast,cloze,cloze_contrast_001,Color contrast is important because," it is the basis for many of the visual effects in computer graphics. The color contrast of a scene is determined by the ratio of the luminance of the scene to the luminance of the background. The luminance of a scene is the brightness of the scene. The luminance of a background is the brightness of the background. The luminance of a scene is the brightness of the scene. The luminance of a background is the brightness of the background.
+The luminance of a scene is determined by the luminance of the scene","Color contrast is important because it is the basis for many of the visual effects in computer graphics. The color contrast of a scene is determined by the ratio of the luminance of the scene to the luminance of the background. The luminance of a scene is the brightness of the scene. The luminance of a background is the brightness of the background. The luminance of a scene is the brightness of the scene. The luminance of a background is the brightness of the background.
+The luminance of a scene is determined by the luminance of the scene"
+pythia-1b,page title,cloze,cloze_title_001,A page title describes, the content of the page. A title is a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content,A page title describes the content of the page. A title is a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content. A title is usually a short description of the page content
+pythia-1b,closed captions,direct_question,direct_cc_001,What are closed captions?,"
+
+Closed captions are a new feature in the Google Translate app. They are a way to add captions to your translation.
+
+Closed captions are a way to add captions to your translation. They are a way to add captions to your translation.
+
+Closed captions are a way to add captions to your translation. They are a way to add captions to your translation.
+
+Closed captions are a way to add captions to your translation.","What are closed captions?
+
+Closed captions are a new feature in the Google Translate app. They are a way to add captions to your translation.
+
+Closed captions are a way to add captions to your translation. They are a way to add captions to your translation.
+
+Closed captions are a way to add captions to your translation. They are a way to add captions to your translation.
+
+Closed captions are a way to add captions to your translation."
+pythia-1b,color contrast,direct_question,direct_contrast_001,What is color contrast?,"
+
+Color contrast is the difference between the colors of two objects.
+
+For example, if you see a red car and a blue house, the color contrast is the difference between the red car and the blue house.
+
+The color contrast is measured in terms of the number of different colors that can be distinguished from each other.
+
+For example, if you see a red car and a blue house, the color contrast is the difference between the red car and the blue house.
+","What is color contrast?
+
+Color contrast is the difference between the colors of two objects.
+
+For example, if you see a red car and a blue house, the color contrast is the difference between the red car and the blue house.
+
+The color contrast is measured in terms of the number of different colors that can be distinguished from each other.
+
+For example, if you see a red car and a blue house, the color contrast is the difference between the red car and the blue house.
+"
+pythia-1b,page title,direct_question,direct_title_001,What is a page title?,"
+
+A page title is a short, descriptive name for a page in a website. It is usually a short, descriptive name for a page in a website.
+
+What is a page title?
+
+A page title is a short, descriptive name for a page in a website. It is usually a short, descriptive name for a page in a website.
+
+What is a page title?
+
+A page title is a short, descriptive name for a page in a website.","What is a page title?
+
+A page title is a short, descriptive name for a page in a website. It is usually a short, descriptive name for a page in a website.
+
+What is a page title?
+
+A page title is a short, descriptive name for a page in a website. It is usually a short, descriptive name for a page in a website.
+
+What is a page title?
+
+A page title is a short, descriptive name for a page in a website."
+pythia-1b,closed captions,instruction,instr_cc_001,Explain closed captions to a web developer.,"
+
+I have a client who is a web developer. He is a very good developer, but he is not very good at explaining his work to a client. He is a very good developer, but he is not very good at explaining his work to a client.
+
+I have a client who is a web developer. He is a very good developer, but he is not very good at explaining his work to a client. He is a very good developer, but he is not very good","Explain closed captions to a web developer.
+
+I have a client who is a web developer. He is a very good developer, but he is not very good at explaining his work to a client. He is a very good developer, but he is not very good at explaining his work to a client.
+
+I have a client who is a web developer. He is a very good developer, but he is not very good at explaining his work to a client. He is a very good developer, but he is not very good"
+pythia-1b,color contrast,instruction,instr_contrast_001,Explain color contrast to a web developer.,"
+
+I have a client who is a web developer. He is a very good developer, but he is not very good at explaining color contrast to a web developer. He is not very good at explaining color contrast to a web developer.
+
+I have a client who is a web developer. He is a very good developer, but he is not very good at explaining color contrast to a web developer. He is not very good at explaining color contrast to a web developer.
+
+I have","Explain color contrast to a web developer.
+
+I have a client who is a web developer. He is a very good developer, but he is not very good at explaining color contrast to a web developer. He is not very good at explaining color contrast to a web developer.
+
+I have a client who is a web developer. He is a very good developer, but he is not very good at explaining color contrast to a web developer. He is not very good at explaining color contrast to a web developer.
+
+I have"
+pythia-1b,page title,instruction,instr_title_001,Explain page titles to a web developer.,"
+
+I have a page that is supposed to be a simple list of items. The page title is supposed to be a link to the item. The item is supposed to be a link to a page that has a list of items.
+
+The page title is supposed to be a link to the item. The item is supposed to be a link to a page that has a list of items.
+
+The page title is supposed to be a link to the item. The item is supposed","Explain page titles to a web developer.
+
+I have a page that is supposed to be a simple list of items. The page title is supposed to be a link to the item. The item is supposed to be a link to a page that has a list of items.
+
+The page title is supposed to be a link to the item. The item is supposed to be a link to a page that has a list of items.
+
+The page title is supposed to be a link to the item. The item is supposed"
+pythia-1b,closed captions,evaluative,eval_cc_001,A video without closed captions is not accessible because," the video is not available in the video player.
+
+A video without closed captions is not accessible because the video is not available in the video player.
+
+A video without closed captions is not accessible because the video is not available in the video player.
+
+A video without closed captions is not accessible because the video is not available in the video player.
+
+A video without closed captions is not accessible because the video is not available in the video player.
+
+","A video without closed captions is not accessible because the video is not available in the video player.
+
+A video without closed captions is not accessible because the video is not available in the video player.
+
+A video without closed captions is not accessible because the video is not available in the video player.
+
+A video without closed captions is not accessible because the video is not available in the video player.
+
+A video without closed captions is not accessible because the video is not available in the video player.
+
+"
+pythia-1b,color contrast,evaluative,eval_contrast_001,Text with low color contrast is not accessible because," of the low color contrast.
+
+Text with high color contrast is not accessible because of the high color contrast.
+
+Text with low color contrast is not accessible because of the low color contrast.
+
+Text with high color contrast is not accessible because of the high color contrast.
+
+Text with low color contrast is not accessible because of the low color contrast.
+
+Text with high color contrast is not accessible because of the high color contrast.
+
+Text with low color contrast is not","Text with low color contrast is not accessible because of the low color contrast.
+
+Text with high color contrast is not accessible because of the high color contrast.
+
+Text with low color contrast is not accessible because of the low color contrast.
+
+Text with high color contrast is not accessible because of the high color contrast.
+
+Text with low color contrast is not accessible because of the low color contrast.
+
+Text with high color contrast is not accessible because of the high color contrast.
+
+Text with low color contrast is not"
+pythia-1b,page title,evaluative,eval_title_001,A web page without a title is not accessible because," the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web","A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web page without a title is not accessible because the title is not available.
+
+A web"
+pythia-1b,closed captions,scenario,scenario_cc_001,"A deaf user is watching a video on a website. Without closed captions, the user"," can hear the audio of the video.
+
+A deaf user is watching a video on a website. Without closed captions, the user can hear the audio of the video.
+
+A deaf user is watching a video on a website. Without closed captions, the user can hear the audio of the video.
+
+A deaf user is watching a video on a website. Without closed captions, the user can hear the audio of the video.
+
+A deaf user is watching a","A deaf user is watching a video on a website. Without closed captions, the user can hear the audio of the video.
+
+A deaf user is watching a video on a website. Without closed captions, the user can hear the audio of the video.
+
+A deaf user is watching a video on a website. Without closed captions, the user can hear the audio of the video.
+
+A deaf user is watching a video on a website. Without closed captions, the user can hear the audio of the video.
+
+A deaf user is watching a"
+pythia-1b,color contrast,scenario,scenario_contrast_001,A low vision user visits a website with poor color contrast. The user, is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is,A low vision user visits a website with poor color contrast. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is unable to see the website's content. The user is
+pythia-1b,page title,scenario,scenario_title_001,A screen reader user navigates to a web page with no title. The user, is presented with a list of options. The user selects one of the options and the screen reader displays the selected option. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text,A screen reader user navigates to a web page with no title. The user is presented with a list of options. The user selects one of the options and the screen reader displays the selected option. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text box. The screen reader then displays the selected option in a text
+pythia-1b,bicycle,cloze,cloze_control_001,A bicycle is used for," transportation, and is generally provided with a front wheel and a rear wheel. The front wheel is rotatably supported by a hub, and the rear wheel is rotatably supported by a hub. The hub is rotatably supported by a hub shaft. The hub shaft is rotatably supported by a hub shaft shaft. The hub shaft shaft is rotatably supported by a hub shaft shaft.
+The hub shaft shaft is rotatably supported by a hub shaft shaft. The hub shaft","A bicycle is used for transportation, and is generally provided with a front wheel and a rear wheel. The front wheel is rotatably supported by a hub, and the rear wheel is rotatably supported by a hub. The hub is rotatably supported by a hub shaft. The hub shaft is rotatably supported by a hub shaft shaft. The hub shaft shaft is rotatably supported by a hub shaft shaft.
+The hub shaft shaft is rotatably supported by a hub shaft shaft. The hub shaft"
+pythia-1b,bicycle,direct_question,direct_control_001,What is a bicycle?,"
+
+A bicycle is a wheeled vehicle that is powered by a motor. The motor is usually a gasoline-powered electric motor. The motor is connected to the bicycle by a chain or a belt. The bicycle is propelled by the motor.
+
+What is a bicycle?
+
+A bicycle is a wheeled vehicle that is powered by a motor. The motor is usually a gasoline-powered electric motor. The motor is connected to the bicycle by a chain or a belt. The bicycle","What is a bicycle?
+
+A bicycle is a wheeled vehicle that is powered by a motor. The motor is usually a gasoline-powered electric motor. The motor is connected to the bicycle by a chain or a belt. The bicycle is propelled by the motor.
+
+What is a bicycle?
+
+A bicycle is a wheeled vehicle that is powered by a motor. The motor is usually a gasoline-powered electric motor. The motor is connected to the bicycle by a chain or a belt. The bicycle"
+pythia-1b,bicycle,instruction,instr_control_001,Explain bicycles to a web developer.,"
+
+I’ve been working on a project for a client that is a bit different from the usual web development. The client is a small company that has a lot of experience in the field of web development. They have a lot of experience in the field of mobile development, and they are looking to hire a web developer to help them with their mobile site.
+
+The client is a small company that has a lot of experience in the field of web development. They have a lot of experience","Explain bicycles to a web developer.
+
+I’ve been working on a project for a client that is a bit different from the usual web development. The client is a small company that has a lot of experience in the field of web development. They have a lot of experience in the field of mobile development, and they are looking to hire a web developer to help them with their mobile site.
+
+The client is a small company that has a lot of experience in the field of web development. They have a lot of experience"
+pythia-1b,bicycle,evaluative,eval_control_001,A bicycle without brakes is not safe because," it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not","A bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not safe because it is not safe to ride.
+
+The bicycle without brakes is not"
+pythia-1b,bicycle,scenario,scenario_control_001,"A child is riding a bicycle on a busy street. Without a helmet, the child"," is at risk of being struck by a car.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of being struck by a car.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of being struck by a car.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of being struck by a car.
+
+A","A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of being struck by a car.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of being struck by a car.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of being struck by a car.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of being struck by a car.
+
+A"
+gpt2-large,closed captions,cloze,cloze_cc_001,Closed captions display," the words in the original language, while the subtitles display the words in the target language.
+
+The subtitles are available in English, French, German, Spanish, Italian, Portuguese, Russian, and Chinese.
+
+The subtitles are available in English, French, German, Spanish, Italian, Portuguese, Russian, and Chinese.
+
+The subtitles are available in English, French, German, Spanish, Italian, Portuguese, Russian, and Chinese.
+
+The subtitles are available in English, French","Closed captions display the words in the original language, while the subtitles display the words in the target language.
+
+The subtitles are available in English, French, German, Spanish, Italian, Portuguese, Russian, and Chinese.
+
+The subtitles are available in English, French, German, Spanish, Italian, Portuguese, Russian, and Chinese.
+
+The subtitles are available in English, French, German, Spanish, Italian, Portuguese, Russian, and Chinese.
+
+The subtitles are available in English, French"
+gpt2-large,color contrast,cloze,cloze_contrast_001,Color contrast is important because," it allows you to see the difference between two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is","Color contrast is important because it allows you to see the difference between two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is the difference between the two colors.
+
+The color contrast of a color is"
+gpt2-large,page title,cloze,cloze_title_001,A page title describes," the content of the page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a","A page title describes the content of the page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a page.
+
+A page title can be used to describe the content of a"
+gpt2-large,closed captions,direct_question,direct_cc_001,What are closed captions?,"
+
+Closed captions are a feature of the video player that allows you to watch the video without having to see the subtitles.
+
+How do I enable closed captions?
+
+Open the video player. Click the ""Video"" tab. Click the ""Options"" button. Click the ""Video Options"" button. Click the ""Video Caption"" button. Click the ""Enable Closed Captioning"" button.
+
+How do I disable closed captions?
+
+Open the video player","What are closed captions?
+
+Closed captions are a feature of the video player that allows you to watch the video without having to see the subtitles.
+
+How do I enable closed captions?
+
+Open the video player. Click the ""Video"" tab. Click the ""Options"" button. Click the ""Video Options"" button. Click the ""Video Caption"" button. Click the ""Enable Closed Captioning"" button.
+
+How do I disable closed captions?
+
+Open the video player"
+gpt2-large,color contrast,direct_question,direct_contrast_001,What is color contrast?,"
+
+Color contrast is the difference between two colors. It is the difference between the two colors that is the most noticeable.
+
+The color contrast of a color is the difference between the two colors that is the most noticeable.
+
+The color contrast of a color is the difference between the two colors that is the most noticeable.
+
+The color contrast of a color is the difference between the two colors that is the most noticeable.
+
+The color contrast of a color is the difference between","What is color contrast?
+
+Color contrast is the difference between two colors. It is the difference between the two colors that is the most noticeable.
+
+The color contrast of a color is the difference between the two colors that is the most noticeable.
+
+The color contrast of a color is the difference between the two colors that is the most noticeable.
+
+The color contrast of a color is the difference between the two colors that is the most noticeable.
+
+The color contrast of a color is the difference between"
+gpt2-large,page title,direct_question,direct_title_001,What is a page title?,"
+
+A page title is a short description of the page. It is usually a short sentence or two, but can be longer.
+
+What is a page title?
+
+A page title is a short description of the page. It is usually a short sentence or two, but can be longer.
+
+What is a page title?
+
+A page title is a short description of the page. It is usually a short sentence or two, but can be longer.
+
+What","What is a page title?
+
+A page title is a short description of the page. It is usually a short sentence or two, but can be longer.
+
+What is a page title?
+
+A page title is a short description of the page. It is usually a short sentence or two, but can be longer.
+
+What is a page title?
+
+A page title is a short description of the page. It is usually a short sentence or two, but can be longer.
+
+What"
+gpt2-large,closed captions,instruction,instr_cc_001,Explain closed captions to a web developer.,"
+
+I've been working on a web app for a few months now. I've been using the HTML5 Canvas API to create a web app that displays a list of books. I've been using the HTML5 Canvas API to create a web app that displays a list of books. I've been using the HTML5 Canvas API to create a web app that displays a list of books. I've been using the HTML5 Canvas API to create a web app that displays a","Explain closed captions to a web developer.
+
+I've been working on a web app for a few months now. I've been using the HTML5 Canvas API to create a web app that displays a list of books. I've been using the HTML5 Canvas API to create a web app that displays a list of books. I've been using the HTML5 Canvas API to create a web app that displays a list of books. I've been using the HTML5 Canvas API to create a web app that displays a"
+gpt2-large,color contrast,instruction,instr_contrast_001,Explain color contrast to a web developer.,"
+
+Color contrast is the ability to distinguish between two colors. It's a fundamental concept in color theory.
+
+The color contrast of a web page is determined by the contrast between the background and the foreground color.
+
+The background color is the color of the background image. The foreground color is the color of the foreground image.
+
+The background image is the image that is used to display the text. The foreground image is the image that is used to display the image.
+
+","Explain color contrast to a web developer.
+
+Color contrast is the ability to distinguish between two colors. It's a fundamental concept in color theory.
+
+The color contrast of a web page is determined by the contrast between the background and the foreground color.
+
+The background color is the color of the background image. The foreground color is the color of the foreground image.
+
+The background image is the image that is used to display the text. The foreground image is the image that is used to display the image.
+
+"
+gpt2-large,page title,instruction,instr_title_001,Explain page titles to a web developer.,"
+
+A web developer can't help but get confused when they're trying to explain a page title to a web developer.
+
+The title of a page is the first thing that a web developer sees when they click on a link.
+
+The title of a page is the first thing that a web developer sees when they click on a link.
+
+The title of a page is the first thing that a web developer sees when they click on a link.
+
+The title of a","Explain page titles to a web developer.
+
+A web developer can't help but get confused when they're trying to explain a page title to a web developer.
+
+The title of a page is the first thing that a web developer sees when they click on a link.
+
+The title of a page is the first thing that a web developer sees when they click on a link.
+
+The title of a page is the first thing that a web developer sees when they click on a link.
+
+The title of a"
+gpt2-large,closed captions,evaluative,eval_cc_001,A video without closed captions is not accessible because," it does not meet the video player's video quality requirements.
+
+Open captioning is available for the following video:
+
+The video is available in closed captioning.
+
+The video is available in open captioning.
+
+The video is available in closed captioning.
+
+The video is available in open captioning.
+
+The video is available in closed captioning.
+
+The video is available in open captioning.
+
+The video is available in closed captioning","A video without closed captions is not accessible because it does not meet the video player's video quality requirements.
+
+Open captioning is available for the following video:
+
+The video is available in closed captioning.
+
+The video is available in open captioning.
+
+The video is available in closed captioning.
+
+The video is available in open captioning.
+
+The video is available in closed captioning.
+
+The video is available in open captioning.
+
+The video is available in closed captioning"
+gpt2-large,color contrast,evaluative,eval_contrast_001,Text with low color contrast is not accessible because," it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not","Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not accessible because it is not a color.
+
+Text with low color contrast is not"
+gpt2-large,page title,evaluative,eval_title_001,A web page without a title is not accessible because," it is not a web page.
+
+A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web","A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web page.
+
+A web page without a title is not accessible because it is not a web"
+gpt2-large,closed captions,scenario,scenario_cc_001,"A deaf user is watching a video on a website. Without closed captions, the user"," can't understand what is being said.
+
+A deaf user is watching a video on a website. Without closed captions, the user can't understand what is being said.
+
+A deaf user is watching a video on a website. Without closed captions, the user can't understand what is being said.
+
+A deaf user is watching a video on a website. Without closed captions, the user can't understand what is being said.
+
+A deaf user is watching a","A deaf user is watching a video on a website. Without closed captions, the user can't understand what is being said.
+
+A deaf user is watching a video on a website. Without closed captions, the user can't understand what is being said.
+
+A deaf user is watching a video on a website. Without closed captions, the user can't understand what is being said.
+
+A deaf user is watching a video on a website. Without closed captions, the user can't understand what is being said.
+
+A deaf user is watching a"
+gpt2-large,color contrast,scenario,scenario_contrast_001,A low vision user visits a website with poor color contrast. The user," is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background","A low vision user visits a website with poor color contrast. The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background.
+
+The user is unable to distinguish between the text and the background"
+gpt2-large,page title,scenario,scenario_title_001,A screen reader user navigates to a web page with no title. The user, is presented with a blank screen. The user is then asked to type in the title of the page. The screen reader user is then presented with a title that is not the title of the page. The user is then asked to type in the title of the page. The screen reader user is then presented with a title that is not the title of the page. The user is then asked to type in the title of the page. The screen reader user is then presented with a title that is not,A screen reader user navigates to a web page with no title. The user is presented with a blank screen. The user is then asked to type in the title of the page. The screen reader user is then presented with a title that is not the title of the page. The user is then asked to type in the title of the page. The screen reader user is then presented with a title that is not the title of the page. The user is then asked to type in the title of the page. The screen reader user is then presented with a title that is not
+gpt2-large,bicycle,cloze,cloze_control_001,A bicycle is used for," transportation in the city of San Francisco, California, U.S., on Friday, May 19, 2017. The city is planning to install a bike lane on a major thoroughfare in the city's financial district. Photographer: David Paul Morris/Bloomberg via Getty Images
+
+The city of San Francisco is planning to install a bike lane on a major thoroughfare in the city's financial district.
+
+The city's Department of Transportation is planning to install a bike lane on Market Street between Market and","A bicycle is used for transportation in the city of San Francisco, California, U.S., on Friday, May 19, 2017. The city is planning to install a bike lane on a major thoroughfare in the city's financial district. Photographer: David Paul Morris/Bloomberg via Getty Images
+
+The city of San Francisco is planning to install a bike lane on a major thoroughfare in the city's financial district.
+
+The city's Department of Transportation is planning to install a bike lane on Market Street between Market and"
+gpt2-large,bicycle,direct_question,direct_control_001,What is a bicycle?,"
+
+A bicycle is a vehicle that is propelled by human power. It is a vehicle that is propelled by human power.
+
+What is a bicycle trailer?
+
+A bicycle trailer is a vehicle that is propelled by human power. It is a vehicle that is propelled by human power.
+
+What is a bicycle trailer?
+
+A bicycle trailer is a vehicle that is propelled by human power. It is a vehicle that is propelled by human power.
+
+What is a bicycle trailer","What is a bicycle?
+
+A bicycle is a vehicle that is propelled by human power. It is a vehicle that is propelled by human power.
+
+What is a bicycle trailer?
+
+A bicycle trailer is a vehicle that is propelled by human power. It is a vehicle that is propelled by human power.
+
+What is a bicycle trailer?
+
+A bicycle trailer is a vehicle that is propelled by human power. It is a vehicle that is propelled by human power.
+
+What is a bicycle trailer"
+gpt2-large,bicycle,instruction,instr_control_001,Explain bicycles to a web developer.,"
+
+Bicycle design is a complex topic. It's not just about the wheels, but the frame, the seat, the handlebars, the seat post, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat","Explain bicycles to a web developer.
+
+Bicycle design is a complex topic. It's not just about the wheels, but the frame, the seat, the handlebars, the seat post, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat post clamp, the seat"
+gpt2-large,bicycle,evaluative,eval_control_001,A bicycle without brakes is not safe because," it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a","A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a vehicle.
+
+A bicycle without brakes is not safe because it is not a"
+gpt2-large,bicycle,scenario,scenario_control_001,"A child is riding a bicycle on a busy street. Without a helmet, the child"," is at risk of serious injury.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of serious injury.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of serious injury.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of serious injury.
+
+A child is riding a bicycle on a busy street. Without a","A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of serious injury.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of serious injury.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of serious injury.
+
+A child is riding a bicycle on a busy street. Without a helmet, the child is at risk of serious injury.
+
+A child is riding a bicycle on a busy street. Without a"
