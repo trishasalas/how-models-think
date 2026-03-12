@@ -2,7 +2,6 @@
 .DS_Store
 .idea/
 __pycache__/
-data/
 memory/MEMORY.md
 paper-2/
 paper-3/
