@@ -31,9 +31,10 @@ pandoc \
   "$SECTIONS/05-discussion.md" \
   "$SECTIONS/06-conclusion.md" \
   "$SECTIONS/07-limitations.md" \
-  "$SECTIONS/08-references.md" \
-  "$SECTIONS/09-colophon.md" \
-  "$SECTIONS/10-appendix.md" \
+  "$SECTIONS/08-extended-analysis.md" \
+  "$SECTIONS/09-appendix.md" \
+  "$SECTIONS/10-references.md" \
+  "$SECTIONS/11-colophon.md" \
   -o "$OUTPUT" \
   --pdf-engine=lualatex \
   --lua-filter=paper/filters/caption-style.lua \
@@ -42,7 +43,7 @@ pandoc \
   --citeproc \
   -V documentclass=extarticle \
   -V geometry:margin=1in \
-  -V mainfont="Atkinson Hyperlegible" \
+  -V mainfont="Atkinson Hyperlegible Next" \
   -V fontsize=14pt \
   -V linestretch=1.15 \
   -V colorlinks=true
