@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate paper figures for Paper 1: Accessibility Emergence.
+DEPRECATED — use individual figure scripts (generate-fig1.py through generate-fig5.py) instead.
 
-Outputs to paper/figures/. Run from the paper-1/ directory:
-    python generate-figures.py
-
-Produces:
-    fig-pythia-perplexity.png     — Perplexity preference ratio across Pythia sizes
-    fig-gpt2-perplexity.png       — Perplexity preference ratio across GPT-2 sizes
-    fig-binding-persistence.png   — Last strong binding layer by model (mechanistic threshold)
+This was the original combined figure generator before each figure was split
+into its own script. Kept for provenance only; outputs may not match current
+paper figures.
 """
 
 import matplotlib
@@ -18,9 +14,11 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-# ── Paths ──────────────────────────────────────────────────────────────────────
-FIGURES_DIR = Path("paper/figures")
-RESULTS_DIR = Path("results")
+# ── Paths (resolved from script location, run from anywhere) ──────────────────
+SCRIPT_DIR  = Path(__file__).resolve().parent
+PROJECT_DIR = SCRIPT_DIR.parent  # accessibility-knowledge-emergence/
+FIGURES_DIR = PROJECT_DIR / "figures"
+RESULTS_DIR = PROJECT_DIR / "results"
 FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Palette ────────────────────────────────────────────────────────────────────

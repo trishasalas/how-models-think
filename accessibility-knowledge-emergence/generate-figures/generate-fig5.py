@@ -14,10 +14,10 @@ Data: hardcoded from Pythia 2.8B attention binding analysis.
       alt text:      all=200, strong=40
       skip link:     all=208, strong=40
 
-Run from the accessibility-knowledge-emergence/ directory:
-    python paper/generate-figures/generate-fig5.py
+Run from anywhere:
+    python generate-figures/generate-fig5.py
 
-Output: paper/figures/compound-comparison.png
+Output: figures/compound-comparison.png
 """
 
 import matplotlib
@@ -27,7 +27,9 @@ import matplotlib.font_manager as fm
 import numpy as np
 from pathlib import Path
 
-FIGURES_DIR = Path("paper/figures")
+SCRIPT_DIR  = Path(__file__).resolve().parent
+PROJECT_DIR = SCRIPT_DIR.parent  # accessibility-knowledge-emergence/
+FIGURES_DIR = PROJECT_DIR / "figures"
 
 # ── Palette (matches fig1) ─────────────────────────────────────────────────────
 NAVY       = "#08306b"

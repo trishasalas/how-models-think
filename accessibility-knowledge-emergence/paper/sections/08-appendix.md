@@ -36,27 +36,12 @@ computed for each sentence independently. Values below 1.0 on the
 preference ratio indicate the model finds the wrong definition more
 natural.
 
-**Concept**
+| Concept |       Correct      |      Incorrect      |
+| ---------- | ---------------- | --------------- |
+| screen  reader | A screen reader is software that reads text aloud for blind users. | A screen reader is a device for viewing screens.       |
+| alt text | The purpose of alt text is to provide a textual description of an image for people with visual disabilities. | The purpose of alt text is to make images load faster. |
+| skip link | A skip link is a navigation aid that allows keyboard users to bypass repetitive content. | A skip link is a broken hyperlink that does not load.                                                       |
 
-Screen reader\
-Correct: A screen reader is software that reads text aloud for blind
-users.
-
-Incorrect: A screen reader is a device for viewing screens.
-
-**Alt text**
-
-Correct: The purpose of alt text is to provide a textual description of
-an image for people with visual disabilities.
-
-Incorrect: The purpose of alt text is to make images load faster.
-
-**Skip Link**
-
-Correct: A skip link is a navigation aid that allows keyboard users to
-bypass repetitive content.
-
-Incorrect: A skip link is a broken hyperlink that does not load.
 
 \newpage
 
@@ -68,30 +53,35 @@ All experiments used base (non-instruction-tuned) model checkpoints.
 
 #### Pythia Scaling Suite
 
+\smallskip
+
 Architecture: parallel attention + MLP blocks.
 
 **Table 2**
 
-  Model   Layers   Heads   d_model   d_mlp
-  ------- -------- ------- --------- --------
-  160M    12       12      768       3,072
-  410M    24       16      1,024     4,096
-  1B      16       8       2,048     8,192
-  2.8B    32       32      2,560     10,240
-  6.9B    32       32      4,096     16,384
+| Model | Layers | Heads | d_model | d_mlp |
+|-------|-------|-------|-------|-------|
+| 160M | 12 | 12 | 768 | 3,072 |
+| 410M | 24 | 16 | 1,024 | 4,096 |
+| 1B | 16 | 8 | 2,048 | 8,192 |
+| 2.8B | 32 | 32 | 2,560 | 10,240 |
+| 6.9B | 32 | 32 |4,096 | 16,384 |
+| 12B | 36 | 40 | 5,120 | 20,480 |
 
 #### GPT-2 Model Family
+
+\smallskip
 
 Architecture: sequential attention + MLP blocks.
 
 **Table 3**
 
-  Model           Layers   Heads   d_model   d_mlp
-  --------------- -------- ------- --------- -------
-  Small (117M)    12       12      768       3,072
-  Medium (406M)   24       16      1,024     4,096
-  Large (838M)    36       20      1,280     5,120
-  XL (1.5B)       48       25      1,600     6,400
+| Model | Layers | Heads | d_model | d_mlp |
+|-------|-------|-------|-------|-------|
+| Small (117M) | 12 | 12 | 768 | 3,072 |
+| Medium (406M)| 24 | 16 | 1,024 | 4,096 |
+| Large (838M) | 36 | 20 | 1,280 | 5,120 |
+| XL (1.5B) | 32 | 32 | 2,560 | 10,240 |
 
 \newpage
 

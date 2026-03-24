@@ -12,10 +12,10 @@ this script outputs a clean chart only.
 
 Data: results/pythia/*_attention_binding.csv
 
-Run from the accessibility-knowledge-emergence/ directory:
-    python paper/generate-figures/generate-fig4.py
+Run from anywhere:
+    python generate-figures/generate-fig4.py
 
-Output: paper/figures/binding-persistence.png
+Output: figures/binding-persistence.png
 """
 
 import matplotlib
@@ -26,8 +26,10 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-FIGURES_DIR = Path("paper/figures")
-RESULTS_DIR = Path("results")
+SCRIPT_DIR  = Path(__file__).resolve().parent
+PROJECT_DIR = SCRIPT_DIR.parent  # accessibility-knowledge-emergence/
+FIGURES_DIR = PROJECT_DIR / "figures"
+RESULTS_DIR = PROJECT_DIR / "results"
 
 # ── Palette (matches fig1) ─────────────────────────────────────────────────────
 NAVY       = "#08306b"
@@ -46,11 +48,11 @@ plt.rcParams.update({
 })
 
 # ── Model metadata ─────────────────────────────────────────────────────────────
-MODELS       = ["160M", "410M", "1B", "2.8B", "6.9B"]
-TOTAL_LAYERS = [12, 24, 16, 32, 32]
+MODELS       = ["160M", "410M", "1B", "2.8B", "6.9B", "12B"]
+TOTAL_LAYERS = [12, 24, 16, 32, 32, 36]
 
 # Colors: light blue = pre-emergence, navy = post-emergence
-COLORS = [LIGHT_BLUE, LIGHT_BLUE, LIGHT_BLUE, NAVY, NAVY]
+COLORS = [LIGHT_BLUE, LIGHT_BLUE, LIGHT_BLUE, NAVY, NAVY, NAVY]
 
 # ── Threshold marker: between 1B (index 2) and 2.8B (index 3) ─────────────────
 THRESHOLD_X = 2.5
@@ -70,6 +72,7 @@ def make_figure():
         RESULTS_DIR / "pythia/1b_attention_binding.csv",
         RESULTS_DIR / "pythia/2.8b_attention_binding.csv",
         RESULTS_DIR / "pythia/6.9b_attention_binding.csv",
+        RESULTS_DIR / "pythia/12b_attention_binding.csv",
     ]
     last_layers = [last_strong_layer(p) for p in csv_files]
 

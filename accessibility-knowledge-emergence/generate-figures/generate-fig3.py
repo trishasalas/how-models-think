@@ -10,10 +10,10 @@ Data: results/gpt2/perplexity_data.csv
       Three concept pairs: screen_reader, alt_text, skip_link
       Values averaged across pairs per model.
 
-Run from the accessibility-knowledge-emergence/ directory:
-    python paper/generate-figures/generate-fig3.py
+Run from anywhere:
+    python generate-figures/generate-fig3.py
 
-Output: paper/figures/fig-gpt2-perplexity-flip.png
+Output: figures/gpt2-perplexity.png
 """
 
 import matplotlib
@@ -24,8 +24,10 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-FIGURES_DIR = Path("../figures")
-RESULTS_DIR = Path("../results")
+SCRIPT_DIR  = Path(__file__).resolve().parent
+PROJECT_DIR = SCRIPT_DIR.parent  # accessibility-knowledge-emergence/
+FIGURES_DIR = PROJECT_DIR / "figures"
+RESULTS_DIR = PROJECT_DIR / "results"
 
 # ── Palette (matches fig1) ─────────────────────────────────────────────────────
 NAVY       = "#08306b"

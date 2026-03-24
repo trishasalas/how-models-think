@@ -6,14 +6,14 @@ Several limitations should be considered when interpreting the results.
 
 ### Prompt Design
 
-All experiments used completion-style prompts ("A screen reader is,"
-"WCAG stands for") rather than instruction or question formats. Prompt
-framing is known to affect retrieval in language models, and our own
-findings support that sensitivity. The alt text retrieval experiment
-demonstrated that the HTML-framed prompt ("In HTML, the alt attribute
-provides a text description of an") performed worse than the simpler
-framing despite testing identical knowledge. Results reported here
-reflect one prompt design choice and may not generalize to other
+All declarative experiments used completion-style prompts ("A screen
+reader is," "WCAG stands for") rather than instruction or question
+formats. Prompt framing is known to affect retrieval in language models,
+and our own findings support that sensitivity. The alt text retrieval
+experiment demonstrated that the HTML-framed prompt ("In HTML, the alt
+attribute provides a text description of an") performed worse than the
+simpler framing despite testing identical knowledge. Results reported
+here reflect one prompt design choice and may not generalize to other
 framings.
 
 The declarative prompts were adapted from attention binding experiments
@@ -23,15 +23,33 @@ are robust across framings.
 
 ### Evaluative Experiment Prompts
 
-The evaluative experiment used zero-shot code completion prompts. The
-image missing alt attribute result --- where models loop the prompt
-rather than identify the missing attribute --- may reflect document
-completion behavior rather than a knowledge failure. Models trained on
-code repositories may interpret `<img src='photo.jpg'>` as the beginning
-of a code listing and complete accordingly. Instruction-tuned models or
-explicit question formatting ("What accessibility attribute is missing
-from this HTML?") may produce different results. This limitation is
-noted but not resolved here.
+The original evaluative experiment (Experiment 2a) used zero-shot code
+completion prompts. The image missing alt attribute result --- where
+models loop the prompt rather than identify the missing attribute ---
+may reflect document completion behavior rather than a knowledge
+failure. Models trained on code repositories may interpret
+`<img src='photo.jpg'>` as the beginning of a code listing and complete
+accordingly.
+
+The elicitation robustness experiments (Experiment 2b) partially address
+this limitation by testing the same underlying knowledge across multiple
+prompt formats, including direct questioning and error correction
+strategies that do not rely on code completion framing. The gap persists
+across all strategies tested, reducing the likelihood that the original
+finding was an artifact of completion-style prompting. However,
+instruction-tuned models may produce different results, and this remains
+a direction for future work.
+
+### Entropy Analysis
+
+The entropy analysis (Experiment 2c) was computed on three
+hypothesis-driven prompts at two model scales. The three distinct
+failure profiles at 2.8B are a suggestive finding, but the small number
+of prompts per condition limits the statistical power of the
+observation. Whether the entropy differentiation generalizes across a
+broader set of evaluative prompts and additional model scales has not
+been tested. The entropy values reported are descriptive rather than
+inferential --- no statistical significance tests were applied.
 
 ### Perplexity Experiment Scope
 
@@ -64,6 +82,12 @@ The compound generalization finding --- that alt text and skip link show
 comparable binding to screen reader at 2.8B --- is based on head counts
 above the 0.1 threshold across all three compounds.
 
+The 12B binding extension uses the same methodology and thresholds as
+the original experiment. The late-layer resurgence observation is based
+on head counts in the final layers and has not been tested with
+additional compound terms at 12B. Whether the resurgence pattern
+generalizes beyond "screen reader" at this scale is unknown.
+
 ### Cross-Architecture Comparison
 
 GPT-2 models vary in both layer count and head count across sizes,
@@ -90,10 +114,10 @@ are available in the project repository for independent verification.
 
 ### Scale Coverage
 
-The scale ladder covers 160M through 6.9B parameters for Pythia and 117M
-through 1.5B for GPT-2. ARIA fails to emerge at any scale tested in
-either model family. Whether ARIA would emerge at larger scales is
-unknown. The evaluative gap --- models that define concepts cannot
-identify violations --- was not tested beyond 6.9B. Both findings may
-reflect limitations of the scale range rather than fundamental
-properties of these concepts.
+The behavioral scale ladder covers 160M through 6.9B parameters for
+Pythia and 117M through 1.5B for GPT-2. The binding analysis extends to
+Pythia 12B. ARIA fails to emerge at any scale tested in either model
+family. Whether ARIA would emerge at larger scales is unknown. The
+evaluative gap --- models that define concepts cannot identify violations
+--- was not tested beyond 6.9B. Both findings may reflect limitations of
+the scale range rather than fundamental properties of these concepts.

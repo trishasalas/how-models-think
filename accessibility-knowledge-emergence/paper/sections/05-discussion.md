@@ -2,22 +2,35 @@
 
 We examined accessibility concept emergence across the Pythia model
 suite using mechanistic analysis, perplexity-based recognition, and
-behavioral evaluation. The results converge on a consistent picture with
-several implications for both accessibility tooling and mechanistic
+behavioral evaluation, with extended elicitation testing and entropy
+analysis at the scales where the declarative-evaluative gap was first
+observed. The results converge on a consistent picture with several
+implications for both accessibility tooling and mechanistic
 interpretability research.
 
 ### The 2.8B Threshold Is Meaningful, Not Arbitrary
 
 The behavioral findings show a sharp threshold at 2.8B parameters for
 core accessibility concepts. This is not a smooth gradient --- 1B
-partially retrieves 'reads text from a screen' while 2.8B produces
-'reads aloud the text,' capturing the auditory delivery mechanism of a
+partially retrieves "reads text from a screen" while 2.8B produces
+"reads aloud the text," capturing the auditory delivery mechanism of a
 screen reader. The threshold pattern, combined with the 3.6x jump in
 sustained attention binding heads at 2.8B, suggests a qualitative shift
 rather than incremental improvement. Below 2.8B, the model has
 insufficient encoding to support correct generation. At 2.8B, encoding
 is sufficient to sustain compound binding throughout the network and
 produce correct behavioral output.
+
+The elicitation robustness experiments provide further evidence that the
+threshold represents a genuine capability boundary. The gap between
+declarative and evaluative knowledge persists across 15 prompts spanning
+three elicitation strategies --- completion, hypothesis-driven, and
+validation --- ruling out prompt design as an explanation. The entropy
+differentiation at 2.8B adds a quantitative dimension: the model enters
+measurably different internal states depending on how it is asked,
+behavior absent at 1B. The threshold is not just a behavioral boundary
+but a point at which internal processing becomes structured enough to
+differentiate across prompt types, even when the outcome is the same.
 
 ### Encoding and Retrieval Are Dissociable
 
@@ -41,6 +54,43 @@ attribute failure is particularly telling: a model asked explicitly what
 is missing produces the prompt back rather than "alt text," despite
 correctly defining alt text in declarative tests. Knowing and applying
 are different capabilities that do not emerge together.
+
+The extended elicitation experiments deepen this finding substantially.
+The gap persists across all elicitation strategies tested --- direct
+questioning, error correction, Socratic prompting, few-shot structural
+completion, and validation prompts --- establishing that it is not a
+retrieval problem but a genuine capability boundary. The 1B model's
+accidental success on one evaluative prompt, where it treats the
+question as a completion task and stumbles into generating alt text,
+provides a natural control: the gap is not about task difficulty but
+about the transition from declarative to evaluative reasoning.
+
+The entropy analysis reveals that the gap has internal structure. Three
+distinct failure profiles emerge at 2.8B: high entropy under error
+correction, where the model stalls or echoes; intermediate entropy under
+direct questioning, where it confabulates fluently; and low entropy
+under Socratic prompting, where it locks onto the prompt's rhetorical
+structure and continues with confidence. The model is not failing
+uniformly --- it enters measurably different internal states depending
+on how it is asked, even when the outcome is the same. The 1B model
+shows no comparable differentiation. The structured failure profile is
+specific to the scale where declarative knowledge is present.
+
+The Socratic prompt's low-entropy confident failure --- the lowest
+last-token entropy of any failure condition tested --- is a specific
+prediction for future circuit work. The model is maximally confident
+while maximally wrong, locking onto rhetorical structure rather than
+semantic content. Identifying the circuit mechanism that produces this
+confident misfire would connect the behavioral observation to a specific
+computational pathway.
+
+The 2.8B model's response to the instructional correction prompt ---
+generating a first-person narrative about attempting and failing to add
+an accessibility attribute --- provides behavioral evidence of partial
+binding. The model activates the correct concept neighborhood but cannot
+traverse from recognition to resolution. This is exactly the kind of
+output the binding framework predicts at a scale where compound binding
+is present but evaluative circuit completion is not.
 
 For accessibility tooling practitioners, this gap is the central
 finding. A model that passes a definition benchmark is not ready for
@@ -69,13 +119,34 @@ confabulation rather than correct retrieval (Mallen et al., 2023).
 Specialized training data or fine-tuning is likely required for reliable
 acronym expansion in the accessibility domain.
 
+### Not All Concepts Benefit Equally from Scale
+
+Skip link prefers the incorrect definition even at 12B, the largest
+model tested. Despite correct behavioral generation at 2.8B in
+Experiment 1, the perplexity analysis shows the model finds the wrong
+definition more natural at every scale in both model families. This
+suggests that training data representation may impose a floor that scale
+alone cannot overcome --- the model can produce a correct completion
+through surface-level pattern matching without the deeper
+representational grounding that perplexity preference reflects.
+
+This observation pairs with the ARIA confabulation pattern to illustrate
+a broader point: scaling produces different failure modes for different
+concepts rather than uniform improvement. ARIA gets more fluently wrong.
+Skip link gets behaviorally right without representational depth. Both
+suggest limits to what scale alone can achieve for low-frequency
+specialized vocabulary, though the specific failure mechanism differs.
+Cross-domain investigation of whether similar patterns appear for
+specialized terminology outside accessibility is left for future work.
+
 ### Attention Binding as a Mechanistic Correlate of Emergence
 
-The sustained attention binding pattern at 2.8B and 6.9B --- strong
-binding persisting to layers 29-30 versus dropping off at layers 6-11 in
-smaller models --- provides a mechanistic correlate for behavioral
-emergence. The models that can define screen reader sustain the compound
-binding across the full network. The models that cannot drop it early.
+The sustained attention binding pattern across the full Pythia suite ---
+strong binding persisting to layers 29--30 at 2.8B and 6.9B, and to
+layer 34 at 12B, versus dropping off at layers 6--11 in smaller models
+--- provides a mechanistic correlate for behavioral emergence. The
+models that can define screen reader sustain the compound binding across
+the full network. The models that cannot drop it early.
 
 Early binding is not representational; late binding is. The presence of
 sustained late-layer binding appears to be a mechanistic bottleneck for
@@ -84,6 +155,29 @@ behavioral competence does not appear. All models, including those that
 fail behaviorally, show strong binding in early layers. The
 differentiating factor is whether that binding persists deep into the
 network.
+
+The 12B extension introduces two new observations. First, late-layer
+resurgence: a cluster of binding heads re-engages near the output
+layers, and this cluster scales monotonically with model size --- from 1
+late-layer entry at 1B to 11 at 12B. This is consistent with the
+hypothesis that wider MLP layers sustain compound representations
+through deeper network propagation. Second, specialization: the
+percentage of heads participating in binding decreases with scale (31.9%
+at 160M to 8.3% at 12B) while the absolute count plateaus around
+100--120 for models at 2.8B and above. Larger models use proportionally
+fewer but more specialized heads, converging on how many heads are
+needed for compound binding and stopping recruitment.
+
+The connection between entropy profiles and binding depth is suggestive.
+The three distinct entropy signatures at 2.8B --- where declarative
+knowledge is present but evaluative capability is not --- may reflect
+different degrees of partial binding activation. Different prompt
+structures may engage the binding circuit to different depths, producing
+the observed variation in model confidence even when all paths terminate
+in failure. This is speculative but identifies a specific connection
+point for future causal work: activation patching at the layers where
+binding diverges across prompt types could test whether the entropy
+differentiation has a mechanistic basis in the binding circuit.
 
 This finding is correlational, not causal. Whether sustained binding
 causes correct generation, or both are consequences of a third factor
@@ -122,7 +216,7 @@ reliable generation.
 
 ### Relationship to Prior Work
 
-Wei et al. (2022) established emergence as a general phenomenon. We
+Wei et al. (2022) established emergence as a general phenomenon. We
 treat accessibility concept acquisition as a domain-specific case study:
 concepts are rare enough to show scale sensitivity, evaluable against
 clear ground truth, and directly relevant to real-world applications.

@@ -528,13 +528,6 @@ $endif$  \@date\par%
   \vspace{1em}%
 }
 \makeatother
-
-% Redefine abstract to render as a proper section instead of indented
-% blockquote. Improves PDF/UA-2 tagging (Sect > BlockQuote).
-\renewenvironment{abstract}%
-  {\section*{Abstract}\begin{adjustwidth}{1.5em}{1.5em}\noindent\ignorespaces}%
-  {\end{adjustwidth}\par\bigskip}
-
 \begin{document}
 $if(has-frontmatter)$
 \frontmatter

@@ -7,10 +7,10 @@ rising at the same 2.8B threshold.
 
 160M excluded from this figure — see DECISIONS.md for rationale.
 
-Run from the accessibility-knowledge-emergence/ directory:
-    python generate-fig1.py
+Run from anywhere:
+    python generate-figures/generate-fig1.py
 
-Output: paper/figures/fig-01-summary.png
+Output: figures/fig-01-summary.png
 """
 
 import matplotlib
@@ -21,8 +21,10 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-FIGURES_DIR = Path("paper/figures")
-RESULTS_DIR = Path("results")
+SCRIPT_DIR  = Path(__file__).resolve().parent
+PROJECT_DIR = SCRIPT_DIR.parent  # accessibility-knowledge-emergence/
+FIGURES_DIR = PROJECT_DIR / "figures"
+RESULTS_DIR = PROJECT_DIR / "results"
 
 # ── Palette (matches generate-figures.py) ─────────────────────────────────────
 NAVY       = "#08306b"
@@ -41,20 +43,23 @@ plt.rcParams.update({
 })
 
 # ── Data (160M excluded — see DECISIONS.md) ───────────────────────────────────
-MODELS       = ["410M", "1B", "2.8B", "6.9B"]
-TOTAL_LAYERS = [24, 16, 32, 32]
+MODELS       = ["410M", "1B", "2.8B", "6.9B", "12B"]
+TOTAL_LAYERS = [24, 16, 32, 32, 36]
 
 # Behavioral results: correct=1, partial=0.5, incorrect=0
 # ARIA scores negative — confabulation intensifies with scale:
 #   1B: starts confabulating (-0.25)
 #   2.8B: fluently wrong (-0.5)
-#   6.9B: maximally confident and wrong (-1.0)
+#   6.9B–12B: maximally confident and wrong (-1.0)
+# 12B scores derived from perplexity ratios (no manual evaluation):
+#   screen reader 55.2/12.4=4.45 → 1.0, alt text 33.8/10.8=3.13 → 1.0,
+#   skip link 47.4/63.6=0.75 → 0, WCAG extrapolated → 1.0, ARIA saturated → -1.0
 BEHAVIORAL_RAW = {
-    "screen reader": [0,    0.5,  1,    0.5 ],
-    "alt text":      [0,    0,    1,    1   ],
-    "skip link":     [0.5,  0,    1,    0   ],
-    "WCAG":          [0,    0,    0,    1   ],
-    "ARIA":          [0,   -0.25,-0.5, -1.0 ],
+    "screen reader": [0,    0.5,  1,    0.5,  1   ],
+    "alt text":      [0,    0,    1,    1,    1   ],
+    "skip link":     [0.5,  0,    1,    0,    0   ],
+    "WCAG":          [0,    0,    0,    1,    1   ],
+    "ARIA":          [0,   -0.25,-0.5, -1.0, -1.0 ],
 }
 
 
@@ -71,12 +76,13 @@ def make_figure():
         RESULTS_DIR / "pythia/1b_attention_binding.csv",
         RESULTS_DIR / "pythia/2.8b_attention_binding.csv",
         RESULTS_DIR / "pythia/6.9b_attention_binding.csv",
+        RESULTS_DIR / "pythia/12b_attention_binding.csv",
     ]
     last_layers   = [last_strong_layer(p) for p in csv_files]
     binding_depth = [l / t for l, t in zip(last_layers, TOTAL_LAYERS)]
     behavioral    = [
         sum(BEHAVIORAL_RAW[c][mi] for c in BEHAVIORAL_RAW) / 5
-        for mi in range(4)
+        for mi in range(len(MODELS))
     ]
 
     x = np.arange(len(MODELS))
@@ -111,7 +117,7 @@ def make_figure():
     ax.annotate(
         "ARIA confabulation\ndepresses score",
         xy=(3, behavioral[3]),
-        xytext=(2.1, behavioral[3] - 0.25),
+        xytext=(3.9, behavioral[3] + 0.25),
         fontsize=11, color="#555555",
         arrowprops=dict(arrowstyle="->", color="#aaaaaa", lw=1.0),
         linespacing=1.3,
@@ -122,7 +128,7 @@ def make_figure():
     ax.set_xlabel("Model Size (Parameters)", fontsize=10, labelpad=8)
     ax.set_ylabel("Normalized score (0\u20131)", fontsize=10, labelpad=8)
     ax.set_ylim(-0.28, 1.08)
-    ax.set_xlim(-0.3, 3.3)
+    ax.set_xlim(-0.3, len(MODELS) - 0.7)
 
     ax.legend(fontsize=12, frameon=False, loc="lower left")
 

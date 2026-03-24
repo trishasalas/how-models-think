@@ -10,10 +10,10 @@ Data: results/pythia/perplexity_data.csv
       Three concept pairs: screen_reader, alt_text, skip_link
       Values averaged across pairs per model.
 
-Run from the accessibility-knowledge-emergence/ directory:
-    python paper/generate-figures/generate-fig2.py
+Run from anywhere:
+    python generate-figures/generate-fig2.py
 
-Output: paper/figures/fig-pythia-perplexity-flip.png
+Output: figures/pythia-perplexity.png
 """
 
 import matplotlib
@@ -24,8 +24,10 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-FIGURES_DIR = Path("paper/figures")
-RESULTS_DIR = Path("results")
+SCRIPT_DIR  = Path(__file__).resolve().parent
+PROJECT_DIR = SCRIPT_DIR.parent  # accessibility-knowledge-emergence/
+FIGURES_DIR = PROJECT_DIR / "figures"
+RESULTS_DIR = PROJECT_DIR / "results"
 
 # ── Palette (matches fig1) ─────────────────────────────────────────────────────
 NAVY       = "#08306b"
@@ -44,7 +46,7 @@ plt.rcParams.update({
 })
 
 # ── Model order ────────────────────────────────────────────────────────────────
-MODELS = ["160M", "410M", "1B", "2.8B", "6.9B"]
+MODELS = ["160M", "410M", "1B", "2.8B", "6.9B", "12B"]
 
 # ── Flip zone: crossing occurs between 410M (index 1) and 1B (index 2) ────────
 FLIP_ZONE = (1, 2)
