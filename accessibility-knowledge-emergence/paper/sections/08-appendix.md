@@ -29,6 +29,8 @@ Evaluative experiments used zero-shot code completion prompts.
 - `<input type='text'>` needs a
 - A button that only says 'Click here' is bad because
 
+\newpage
+
 ### 3. Perplexity Pairs
 
 Each pair consists of a correct and incorrect definition. Perplexity was
@@ -81,7 +83,7 @@ Architecture: sequential attention + MLP blocks.
 | Small (117M) | 12 | 12 | 768 | 3,072 |
 | Medium (406M)| 24 | 16 | 1,024 | 4,096 |
 | Large (838M) | 36 | 20 | 1,280 | 5,120 |
-| XL (1.5B) | 32 | 32 | 2,560 | 10,240 |
+| XL (1.5B) | 48 | 25 | 1,600 | 6,400 |
 
 \newpage
 

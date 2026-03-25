@@ -2,10 +2,9 @@
 
 ### Models
 
-This study uses the Pythia model suite (Biderman et al., 2023): 160M, 410M, 1B, 2.8B, 6.9B, and 12B parameter models. Pythia models share consistent architecture and training data across all sizes, isolating scale as the variable of interest. All models were loaded using TransformerLens (Nanda et al., 2022).
+This study uses the Pythia model suite (Biderman et al., 2023): 160M, 410M, 1B, 2.8B, 6.9B, and 12B parameter models. Pythia models share consistent architecture and training data across all sizes, isolating scale as the variable of interest. All models were loaded using TransformerLens (Nanda & Bloom, 2022).
 
-One architectural exception: Pythia 1B uses a different configuration than the other models in the suite: 16 layers, 8 heads, d_model=2048, d_mlp=8192. The other models use 12 heads. This difference is relevant  
-when interpreting per-head binding counts in Experiment 4; comparisons across model sizes account for this asymmetry.
+One architectural exception: Pythia 1B uses a different configuration than the other models in the suite: 16 layers, 8 heads, d_model=2048, d_mlp=8192. The other models use 12 heads. This difference is relevant when interpreting per-head binding counts in Experiment 4; comparisons across model sizes account for this asymmetry.
 
 To assess replicability across model families, all four experiments were additionally run on the GPT-2 model suite (Radford et al., 2019): small (117M), medium (406M), large (838M), and XL (1.5B) parameter models. Unlike Pythia, GPT-2 models vary in both layer count and head count across sizes, 12/16/20/25 heads and 12/24/36/48 layers respectively, making direct architectural comparisons across sizes less controlled. GPT-2 was trained on WebText, a dataset of outbound Reddit links, which differs substantially from Pythia's training corpus (The Pile). Results from both model families are reported and cross-architecture comparisons are discussed further in Section five.
 
@@ -20,8 +19,7 @@ model = HookedTransformer.from_pretrained("pythia-2.8b")
 output = model.generate(prompt, max_new_tokens=10, temperature=0)
 ```
 
-Prompts covered core accessibility terms (screen reader, alt text, skip link), foundational acronyms (WCAG, ARIA), and general accessibility concepts (focus indicator, keyboard navigation, color contrast, semantic  
-HTML, captions). Responses were evaluated against known correct completions including definitions for concept prompts, purpose statements for functional prompts, and correct expansions for acronym prompts.
+Prompts covered core accessibility terms (screen reader, alt text, skip link), foundational acronyms (WCAG, ARIA), and general accessibility concepts (focus indicator, keyboard navigation, color contrast, semantic HTML, captions). Responses were evaluated against known correct completions including definitions for concept prompts, purpose statements for functional prompts, and correct expansions for acronym prompts.
 
 #### Experiment 2a: Evaluative Knowledge  
 
@@ -49,6 +47,8 @@ PPL(X) = \exp\left(-\frac{1}{N}\sum_{i=1}^{N} \log P(x_i \mid x_{<i})\right)
 $$
 
 Lower perplexity indicates the model finds the text more natural. Comparing perplexity for a correct and incorrect definition across model sizes reveals whether recognition precedes generation. (see Appendix A)
+
+\newpage
 
 ```python
 def get_perplexity(model, text):

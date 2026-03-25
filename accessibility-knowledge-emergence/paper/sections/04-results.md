@@ -10,18 +10,18 @@ Correct = matches known definition;
 Partial = incomplete or imprecise;
 Incorrect = wrong, off-topic, or loops
 
-|       Prompt       | 160M | 410M | 1B | 2.8B | 6.9B |
-|------------------|------|------|------|------|------|
-| A screen reader is | $\times$ |  $\times$ | $\approx$ | $\checkmark$ |  $\approx$ |
-| WCAG stands for | $\times$ | $\times$ | $\times$ | $\times$ | $\checkmark$ |
-| A skip link is | $\times$ | $\approx$ | $\times$ | $\checkmark$ | $\times$ |
-| The purpose of alt text is | $\times$ | $\times$ |  $\times$ | $\checkmark$ | $\checkmark$ |
-| ARIA stands for | $\times$ | $\times$ |  $\times$ | $\times$ | $\times$ |
-| A focus indicator is | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ |
-| Keyboard navigation allows | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ |
-| Color contrast is important because | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ |
-| Semantic HTML helps | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ |
-| Captions are used for | $\times$ | $\approx$ | $\times$ | $\approx$ | $\times$ |
+|     Prompt     | 160M | 410M | 1B | 2.8B | 6.9B | 12B |
+|--------------|------|------|------|------|------|-----|
+| A screen reader is | $\times$ |  $\times$ | $\approx$ | $\checkmark$ |  $\approx$ | $\checkmark$ |
+| WCAG stands for | $\times$ | $\times$ | $\times$ | $\times$ | $\checkmark$ | $\checkmark$ |
+| A skip link is | $\times$ | $\approx$ | $\times$ | $\checkmark$ | $\times$ | $\times$ |
+| The purpose of alt text is | $\times$ | $\times$ |  $\times$ | $\checkmark$ | $\checkmark$ | $\checkmark$ |
+| ARIA stands for | $\times$ | $\times$ |  $\times$ | $\times$ | $\times$ | $\times$ |
+| A focus indicator is | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ |
+| Keyboard navigation allows | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ | $\approx$ |
+| Color contrast is important because | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ |
+| Semantic HTML helps | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ | $\times$ |
+| Captions are used for | $\times$ | $\approx$ | $\times$ | $\approx$ | $\times$ | $\times$ |
 
 
 This data reveals a few distinct patterns.
@@ -29,6 +29,8 @@ This data reveals a few distinct patterns.
 **Threshold at 2.8B.**  
 
 Screen reader, skip link, and alt text all show correct or near-correct responses first at 2.8B. Below this threshold, responses are either wrong or incomplete.
+
+\newpage
 
 **Screen reader shows non-monotonic behavior.**  
 
@@ -183,16 +185,16 @@ recognition-before-generation pattern generalizes.
 | 1B | Correct 2.2x | Correct 1.9x | Wrong 1.3x |
 | 2.8B | Correct 4.0x | Correct 1.9x | Wrong 1.1x |
 | 6.9B | Correct 3.0x | Correct 3.1x | Wrong 1.8x |
+| 12B | Correct 4.5x | Correct 3.1x | Wrong 1.3x |
 
 ![Line graph showing perplexity scores on the y-axis (lower means more
-expected) against five Pythia model sizes on the x-axis: 160M, 410M, 1B,
-2.8B, and 6.9B. Two lines represent correct and wrong WCAG definitions.
-At 160M and 410M, the wrong definition line sits below the correct
-definition line, indicating the model finds it more probable. A shaded
-region labeled "flip zone" spans 410M to 1B, where the lines cross. From
-1B onward, the correct definition line drops below the wrong definition
-line, reaching its lowest point at 2.8B before both lines converge
-slightly at 6.9B.](./figures/pythia-perplexity.png)
+expected) against six Pythia model sizes on the x-axis: 160M, 410M, 1B,
+2.8B, 6.9B, and 12B. Two lines represent correct and wrong accessibility
+definitions. At 160M and 410M, the wrong definition line sits below the
+correct definition line, indicating the model finds it more probable. A
+shaded region labeled "flip zone" spans 410M to 1B, where the lines
+cross. From 1B onward, the correct definition line drops below the wrong
+definition line, with the gap widening through 12B.](./figures/pythia-perplexity.png)
 
 ::: caption
 Figure 2: Correct definition perplexity falls below wrong definition
@@ -358,8 +360,8 @@ link.
 |     Compound     | Total heads >0.1 | Strong (0.5+) | Top score |
 |--------------|------|------|------|
 | screen reader | 101 | 25 | 0.9909 |
-| alt text | 211 | 49 | 0.9856 |
-| skip link | 158 | 32 | 0.9816 |
+| alt text | 200 | 49 | 0.9856 |
+| skip link | 182 | 32 | 0.9816 |
 
 All three compounds show the same pattern of early-layer concentration
 with deep-network persistence at 2.8B, with top binding scores above
@@ -370,8 +372,8 @@ three accessibility compounds on the x-axis: screen reader, alt text,
 and skip link. Each compound has two bars: light blue for all heads with
 attention score greater than 0.1, and dark navy for strong heads with
 attention score of 0.5 or greater. For screen reader: 101 all heads, 25
-strong heads. For alt text: 200 all heads, 40 strong heads. For skip
-link: 208 all heads, 40 strong
+strong heads. For alt text: 200 all heads, 49 strong heads. For skip
+link: 182 all heads, 32 strong
 heads.](./figures/compound-comparison.png)
 
 ::: caption
@@ -418,9 +420,7 @@ The new observations at 12B are the late-layer resurgence and the specialization
 
 **Replication: GPT-2**
 
-Attention binding was measured across all four GPT-2 model sizes for
-screen reader, with additional compounds (alt text, skip link) analyzed
-at XL.
+Attention binding was measured across all four GPT-2 model sizes for screen reader, with additional compounds (alt text, skip link) analyzed at XL.
 
 |   Model   | Total >0.1 | Strong (0.5+) | Last Strong Layer | Max Layers |
 |----------|------|------|------|------|
@@ -434,8 +434,6 @@ with the perplexity flip observed in Experiment 3, replicating the
 Pythia pattern in a different architecture. The last strong layer
 advances from 10 to 15 at the same transition --- consistent with
 deep-network persistence as a correlate of recognition-level emergence.
-
-\newpage
 
 At XL, binding was measured for all three compounds:
 

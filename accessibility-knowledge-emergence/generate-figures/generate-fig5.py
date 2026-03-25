@@ -49,8 +49,8 @@ plt.rcParams.update({
 
 # ── Data: Pythia 2.8B head counts ─────────────────────────────────────────────
 CONCEPTS     = ["screen reader", "alt text", "skip link"]
-ALL_HEADS    = [101, 200, 208]   # attention weight > 0.1
-STRONG_HEADS = [25,  40,  40]    # attention weight ≥ 0.5
+ALL_HEADS    = [101, 200, 182]   # attention weight > 0.1
+STRONG_HEADS = [25,  49,  32]    # attention weight ≥ 0.5
 
 BAR_WIDTH = 0.35
 

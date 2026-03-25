@@ -273,7 +273,7 @@ $endif$
 
 
 % Reduce code block font size so long lines fit within the page margins.
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small}
 $if(tables)$
 \usepackage{longtable,booktabs}
 \usepackage{array}[=2016-10-06]
@@ -532,7 +532,7 @@ $endif$  \@date\par%
 % Redefine abstract to render as a proper section instead of indented
 % blockquote. Improves PDF/UA-2 tagging (Sect > BlockQuote).
 \renewenvironment{abstract}%
-  {\section*{Abstract}\begin{adjustwidth}{1.5em}{1.5em}\noindent\ignorespaces}%
+  {\section*{Abstract}\begin{adjustwidth}{2em}{2em}\noindent\ignorespaces}%
   {\end{adjustwidth}\par\bigskip}
 
 \begin{document}

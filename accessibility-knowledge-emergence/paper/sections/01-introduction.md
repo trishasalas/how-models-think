@@ -9,8 +9,7 @@ Most emergence research uses broad capability benchmarks like arithmetic, chain-
 ![Line chart that shows binding depth and behavioral emergence using a
 normalized score across the Pythia model suite. Binding depth is
 represented with a dark blue solid line and behavioral emergence with a
-light blue dashed line. The two line follow the same shape
-.](./figures/binding-behavior.png)
+light blue dashed line. The two lines follow the same shape.](./figures/fig-01-summary.png)
 
 ::: caption
 Figure 1: Binding depth and behavioral emergence score rise at the same 2.8B parameter threshold across the Pythia model suite. ARIA scores negative at 1B--6.9B reflecting fluent confabulation rather than absence of response.

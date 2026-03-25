@@ -114,9 +114,9 @@ are available in the project repository for independent verification.
 
 ### Scale Coverage
 
-The behavioral scale ladder covers 160M through 6.9B parameters for
-Pythia and 117M through 1.5B for GPT-2. The binding analysis extends to
-Pythia 12B. ARIA fails to emerge at any scale tested in either model
+Declarative testing covers 160M through 12B for Pythia and 117M through
+1.5B for GPT-2. The evaluative experiments (Experiment 2a) cover 160M
+through 6.9B for Pythia. The binding analysis extends to Pythia 12B. ARIA fails to emerge at any scale tested in either model
 family. Whether ARIA would emerge at larger scales is unknown. The
 evaluative gap --- models that define concepts cannot identify violations
 --- was not tested beyond 6.9B. Both findings may reflect limitations of

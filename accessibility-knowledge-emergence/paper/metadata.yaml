@@ -1,5 +1,5 @@
 ---
-title: "Accessibility Concept Emergence in the Pythia Suite: Thresholds,Binding, and the Declarative-Evaluative Gap"
+title: "Accessibility Concept Emergence in the Pythia Suite: Thresholds,  Binding, and the Declarative-Evaluative Gap"
 author: "Trisha Salas"
 date: "March 2026"
 affiliation: "Independent Researcher"
@@ -10,6 +10,9 @@ mainfont: "Atkinson Hyperlegible"
 header-includes:
 - \DeclareMathSizes{12}{10}{8}{6}
 - \usepackage{changepage}
+- \usepackage{titlesec}
+- \titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{}{0em}{}
+- \titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
 ---
 
 
