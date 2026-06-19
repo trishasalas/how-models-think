@@ -23,7 +23,7 @@
 
 set -e
 
-OUTPUT="accessibility-knowledge-emergence-v3.pdf"
+OUTPUT="accessibility-concept-emergence.pdf"
 SECTIONS="paper/sections"
 DEBUG_DIR="build-debug"
 INTERMEDIATE="$DEBUG_DIR/paper-intermediate.tex"

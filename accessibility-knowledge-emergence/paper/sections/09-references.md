@@ -48,7 +48,7 @@ Blog*, *1*(8).
 
 Salas, T. (2026, January 18). Testing accessibility knowledge across
 Pythia model sizes. *trishasalas.com*.
-https://trishasalas.com/posts/testing-accessibility-knowledge-across-pythia-model-sizes/
+https://trishasalas.com/blog/research/testing-accessibility-knowledge-pythia/
 
 Wei, J., Tay, Y., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S.,
 Yogatama, D., Bosma, M., Zhou, D., Metzler, D., Chi, E. H., Hashimoto,

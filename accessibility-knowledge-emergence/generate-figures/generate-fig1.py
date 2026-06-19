@@ -43,8 +43,8 @@ plt.rcParams.update({
 })
 
 # ── Data (160M excluded — see DECISIONS.md) ───────────────────────────────────
-MODELS       = ["410M", "1B", "2.8B", "6.9B", "12B"]
-TOTAL_LAYERS = [24, 16, 32, 32, 36]
+MODELS       = ["410M", "2.8B", "6.9B", "12B"]
+TOTAL_LAYERS = [24, 32, 32, 36]
 
 # Behavioral results: correct=1, partial=0.5, incorrect=0
 # ARIA scores negative — confabulation intensifies with scale:
@@ -73,7 +73,6 @@ def last_strong_layer(csv_path, threshold=0.5):
 def make_figure():
     csv_files = [
         RESULTS_DIR / "pythia/410m_attention_binding.csv",
-        RESULTS_DIR / "pythia/1b_attention_binding.csv",
         RESULTS_DIR / "pythia/2.8b_attention_binding.csv",
         RESULTS_DIR / "pythia/6.9b_attention_binding.csv",
         RESULTS_DIR / "pythia/12b_attention_binding.csv",

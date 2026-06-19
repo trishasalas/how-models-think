@@ -46,7 +46,7 @@ plt.rcParams.update({
 })
 
 # ── Model order ────────────────────────────────────────────────────────────────
-MODELS = ["160M", "410M", "1B", "2.8B", "6.9B", "12B"]
+MODELS = ["160M", "410M", "2.8B", "6.9B", "12B"]
 
 # ── Flip zone: crossing occurs between 410M (index 1) and 1B (index 2) ────────
 FLIP_ZONE = (1, 2)
